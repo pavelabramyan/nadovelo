@@ -108,6 +108,13 @@ a { color: inherit; text-decoration: none; transition: color 0.2s, opacity 0.2s;
   transition: background 0.3s, box-shadow 0.3s;
 }
 
+.header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
 .header.scrolled {
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
@@ -117,11 +124,18 @@ a { color: inherit; text-decoration: none; transition: color 0.2s, opacity 0.2s;
 .header-inner {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.75rem;
-  position: relative;
+}
+
+.header-end {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .logo {
@@ -142,9 +156,10 @@ a { color: inherit; text-decoration: none; transition: color 0.2s, opacity 0.2s;
   flex-direction: column;
   gap: 0;
   position: absolute;
-  top: calc(100% + 0.5rem);
-  left: 0;
-  right: 0;
+  top: calc(100% + 0.25rem);
+  right: var(--space);
+  left: auto;
+  width: min(340px, calc(100vw - 2rem));
   background: #fff;
   padding: 0.5rem;
   border-radius: var(--radius);
@@ -152,9 +167,12 @@ a { color: inherit; text-decoration: none; transition: color 0.2s, opacity 0.2s;
   border: 1px solid var(--border);
   max-height: calc(100vh - 5rem);
   overflow-y: auto;
+  z-index: 220;
 }
 
 .nav.open { display: flex; }
+
+.nav[hidden] { display: none !important; }
 
 .nav-links {
   display: flex;
@@ -1372,48 +1390,6 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
     flex-shrink: 0;
   }
 
-  /* На десктопе — только бургер + контакты, без inline-меню */
-  .nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: var(--space);
-    right: var(--space);
-    max-width: 360px;
-    margin-left: auto;
-    background: #fff;
-    padding: 0.5rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border);
-    max-height: calc(100vh - 5rem);
-    overflow-y: auto;
-    z-index: 210;
-  }
-
-  .nav.open {
-    display: flex;
-  }
-
-  .nav-links {
-    flex-direction: column;
-  }
-
-  .nav-extra {
-    display: block;
-  }
-
-  .header-right {
-    display: flex;
-    flex-shrink: 0;
-    margin-left: auto;
-  }
-
-  .header-actions {
-    display: flex;
-    flex-shrink: 0;
-  }
 
   .hero-bg { width: 62%; }
 

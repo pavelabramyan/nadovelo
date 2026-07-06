@@ -18,6 +18,7 @@
 
   function openMenu() {
     nav.classList.add('open');
+    nav.removeAttribute('hidden');
     burger.classList.add('open');
     burger.setAttribute('aria-expanded', 'true');
     burger.setAttribute('aria-label', 'Закрыть меню');
@@ -27,6 +28,7 @@
 
   function closeMenu() {
     nav.classList.remove('open');
+    nav.setAttribute('hidden', '');
     burger.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
     burger.setAttribute('aria-label', 'Открыть меню');
