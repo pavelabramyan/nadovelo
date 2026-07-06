@@ -465,17 +465,18 @@ a { color: inherit; text-decoration: none; transition: color 0.2s, opacity 0.2s;
 
 .hero-visual-plate {
   width: 100%;
-  padding: 0.85rem;
-  background: #fff;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .hero-visual img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
   animation: none !important;
   transform: none !important;
   filter: none !important;
@@ -1043,16 +1044,16 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
 .gallery-item {
   break-inside: avoid;
   margin: 0 0 0.75rem;
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid var(--border);
-  background: #fff;
-  transition: transform 0.3s, box-shadow 0.3s;
+  border: none;
+  background: transparent;
+  transition: transform 0.3s;
 }
 
 .gallery-item:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .gallery-item img {
@@ -1368,7 +1369,7 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
 
   .hero-visual { max-width: 420px; }
 
-  .hero-visual-plate { padding: 1.25rem; }
+  .hero-visual-plate { padding: 0; }
 
   .hero-buttons {
     flex-direction: row;
@@ -1441,8 +1442,8 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
 
   .hero-visual-plate {
     max-width: 520px;
-    padding: 1.25rem;
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    box-shadow: none;
   }
 
   .hero-deco-1 { width: 120px; height: 120px; top: 15%; right: 8%; }
@@ -1557,10 +1558,9 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
 .logo-img {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .container-narrow { max-width: 720px; }
@@ -1646,13 +1646,14 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
 
 .model-card {
   background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border: none;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
+  box-shadow: var(--shadow);
 }
 
-.model-card.featured { border: 2px solid var(--teal); }
+.model-card.featured { box-shadow: 0 0 0 2px var(--teal), var(--shadow); }
 
 .model-card img {
   width: 100%;
