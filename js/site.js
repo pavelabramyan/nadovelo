@@ -5,6 +5,7 @@
     phone: '+79093408841',
     phoneDisplay: '+7 (909) 340-88-41',
     telegram: 'https://t.me/nadovelo',
+    telegramDisplay: 't.me/nadovelo',
     vk: 'https://vk.com/nadovelosaratov',
     address: 'г. Саратов, ул. Чапаева, 8/12',
     mapQuery: 'Саратов, ул. Чапаева, 8/12',
