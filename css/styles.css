@@ -1617,13 +1617,15 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   border: 2px solid var(--border);
 }
 
-.nav-mobile-cta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.75rem 0.5rem 0.25rem;
-  margin-top: 0.5rem;
-  border-top: 1px solid var(--border);
+@media (max-width: 1399px) {
+  .nav-mobile-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 0.5rem 0.25rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
 }
 
 .header-icon-link {
