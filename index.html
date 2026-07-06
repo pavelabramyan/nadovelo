@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=8">
+  <link rel="stylesheet" href="css/styles.css?v=9">
 </head>
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -25,14 +25,17 @@
         <svg class="logo-mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="8" cy="24" r="4" fill="currentColor"/><circle cx="24" cy="24" r="4" fill="currentColor"/><path d="M12 24 L16 12 L20 12 L24 24" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="16" cy="12" r="3" fill="currentColor"/></svg>
         Надо<span>Вело</span>
       </a>
-      <nav class="nav" id="site-nav">
-        <a href="#advantages">Преимущества</a>
-        <a href="#compare">Сравнение</a>
-        <a href="#models">Модели</a>
-        <a href="#tariffs">Тарифы</a>
-        <a href="#calculators">Калькуляторы</a>
-        <a href="#reviews">Отзывы</a>
-        <a href="#faq">FAQ</a>
+      <nav class="nav" id="site-nav" aria-label="Основное меню">
+        <div class="nav-links">
+          <a href="#tariffs">Тарифы</a>
+          <a href="#calculators">Калькуляторы</a>
+          <a href="#contacts">Контакты</a>
+          <a href="#advantages" class="nav-extra">Преимущества</a>
+          <a href="#compare" class="nav-extra">Сравнение</a>
+          <a href="#models" class="nav-extra">Модели</a>
+          <a href="#reviews" class="nav-extra">Отзывы</a>
+          <a href="#faq" class="nav-extra">FAQ</a>
+        </div>
         <a href="#contacts">Контакты</a>
         <div class="nav-mobile-cta">
           <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="btn btn-telegram btn-block" data-track="telegram_nav">Telegram</a>
@@ -617,8 +620,8 @@
   <script type="importmap">
   {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}
   </script>
-  <script type="module" src="js/three-scene.js?v=8"></script>
-  <script src="js/site.js?v=8"></script>
-  <script src="js/calculators.js?v=8"></script>
+  <script type="module" src="js/three-scene.js?v=9"></script>
+  <script src="js/site.js?v=9"></script>
+  <script src="js/calculators.js?v=9"></script>
 </body>
 </html>

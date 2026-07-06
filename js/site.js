@@ -68,7 +68,7 @@
       if (nav.classList.contains('open')) closeMenu();
       else openMenu();
     });
-    nav.querySelectorAll('a').forEach(function (link) {
+    nav.querySelectorAll('.nav-links a, .nav-mobile-cta a').forEach(function (link) {
       link.addEventListener('click', closeMenu);
     });
     document.addEventListener('keydown', function (e) {
