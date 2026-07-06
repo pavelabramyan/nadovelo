@@ -6,8 +6,9 @@ const isMobile = window.innerWidth < 768;
 const canvas = document.getElementById('three-canvas');
 const container = canvas?.closest('.hero-bg');
 
-if (!canvas || !container || prefersReducedMotion) {
+if (!canvas || !container || prefersReducedMotion || isMobile) {
   if (canvas) canvas.style.display = 'none';
+  if (container) container.classList.add('hero-bg--fallback');
 } else {
   initScene(canvas, container);
 }

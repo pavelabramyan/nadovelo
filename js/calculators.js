@@ -16,31 +16,41 @@
     premium: { name: 'Премиум', retail: 89000 }
   };
 
-  // Tabs
-  document.querySelectorAll('.calc-tab').forEach((tab) => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.calc-tab').forEach((t) => t.classList.remove('active'));
-      document.querySelectorAll('.calc-panel').forEach((p) => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.panel).classList.add('active');
+  const tabs = document.querySelectorAll('.calc-tab');
+  const panels = document.querySelectorAll('.calc-panel');
+
+  function switchTab(name) {
+    const panelId = name === 'buyout' ? 'calc-buyout' : 'calc-rent';
+    tabs.forEach((tab) => {
+      const active = tab.dataset.panel === panelId;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
     });
+    panels.forEach((panel) => {
+      const active = panel.id === panelId;
+      panel.classList.toggle('active', active);
+      if (active) panel.removeAttribute('hidden');
+      else panel.setAttribute('hidden', '');
+    });
+    updateRentCalc();
+    updateBuyoutCalc();
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => switchTab(tab.dataset.panel === 'calc-buyout' ? 'buyout' : 'rent'));
   });
 
-  // Toggle buttons
   document.querySelectorAll('.calc-toggle-group').forEach((group) => {
     group.querySelectorAll('.calc-toggle').forEach((btn) => {
       btn.addEventListener('click', () => {
         group.querySelectorAll('.calc-toggle').forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
-        const event = new Event('change', { bubbles: true });
-        btn.closest('.calc-form')?.dispatchEvent(event);
         updateRentCalc();
         updateBuyoutCalc();
       });
     });
   });
 
-  // ─── RENT CALCULATOR ───
   const rentEls = {
     model: document.getElementById('rent-model'),
     periodType: () => document.querySelector('#rent-period-group .calc-toggle.active')?.dataset.value || 'days',
@@ -77,6 +87,15 @@
     if (parseInt(rentEls.period.value, 10) > max) rentEls.period.value = max;
   }
 
+  function syncFormFromRent() {
+    if (!window.NadoVeloSite || !rentEls.model) return;
+    if (!document.getElementById('calc-rent')?.classList.contains('active')) return;
+    const model = MODELS[rentEls.model.value];
+    const days = getRentDays();
+    const text = 'Аренда: ' + model.name + ', ' + rentEls.periodDisplay.textContent + ', итого ' + rentEls.total.textContent;
+    window.NadoVeloSite.updateFormComment(text);
+  }
+
   function updateRentCalc() {
     if (!rentEls.model) return;
     updateRentPeriodLabel();
@@ -97,7 +116,6 @@
     const rentTotal = effectiveDaily * days;
     const deposit = model.deposit;
     const firstPayment = effectiveDaily + deposit;
-    const totalWithDeposit = rentTotal + deposit;
 
     rentEls.total.textContent = fmt(rentTotal);
     rentEls.perDay.textContent = fmt(effectiveDaily);
@@ -105,13 +123,13 @@
     rentEls.firstPay.textContent = fmt(firstPayment);
     rentEls.deposit.textContent = fmt(deposit);
 
+    const totalWithDeposit = rentTotal + deposit;
     const rentPct = (rentTotal / totalWithDeposit) * 100;
     const depPct = 100 - rentPct;
     rentEls.breakdown.innerHTML =
       '<div class="calc-chart-segment rent" style="width:' + rentPct + '%"></div>' +
       '<div class="calc-chart-segment deposit" style="width:' + depPct + '%"></div>';
 
-    // Earnings estimate (Kruti-style ROI)
     const ordersPerDay = parseInt(rentEls.orders.value, 10);
     const avgOrderPay = 180;
     const dailyEarnings = ordersPerDay * avgOrderPay;
@@ -121,17 +139,18 @@
     rentEls.ordersDisplay.textContent = ordersPerDay;
     if (netDaily > 0) {
       rentEls.earnings.innerHTML =
-        'При ' + ordersPerDay + ' заказах/день (~' + fmt(dailyEarnings) + ') ' +
-        'чистыми <strong>' + fmt(netDaily) + '/день</strong>, за период — <strong>' + fmt(netTotal) + '</strong>';
+        '<span class="calc-disclaimer">Примерная оценка, не гарантия дохода.</span> При ' + ordersPerDay +
+        ' заказах/день (~' + fmt(dailyEarnings) + ') чистыми <strong>' + fmt(netDaily) + '/день</strong>, за период — <strong>' + fmt(netTotal) + '</strong>';
     } else {
       rentEls.earnings.innerHTML =
-        'Увеличьте количество заказов — при текущем тарифе расходы превышают доход';
+        '<span class="calc-disclaimer">Примерная оценка.</span> Увеличьте количество заказов — при текущем тарифе расходы превышают доход';
     }
 
     const weekDisc = days >= 7 ? ' Скидка 5% при аренде от 7 дней — уточняйте у менеджера.' : '';
     rentEls.tip.textContent =
-      model.name + ': ' + model.batteries + ' АКБ, до ' + model.hours + ' ч работы. ' +
-      'Первый день бесплатно для новых клиентов.' + weekDisc;
+      model.name + ': ' + model.batteries + ' АКБ, до ' + model.hours + ' ч работы. Первый день бесплатно для новых клиентов.' + weekDisc;
+
+    syncFormFromRent();
   }
 
   if (rentEls.model) {
@@ -146,7 +165,6 @@
     updateRentCalc();
   }
 
-  // ─── BUYOUT CALCULATOR ───
   const buyEls = {
     model: document.getElementById('buyout-model'),
     retail: document.getElementById('buyout-retail'),
@@ -166,6 +184,14 @@
     tip: document.getElementById('buyout-tip'),
     schedule: document.getElementById('buyout-schedule')
   };
+
+  function syncFormFromBuyout() {
+    if (!window.NadoVeloSite || !buyEls.model) return;
+    if (!document.getElementById('calc-buyout')?.classList.contains('active')) return;
+    const model = BUYOUT_MODELS[buyEls.model.value];
+    const text = 'Выкуп: ' + model.name + ', платёж ' + buyEls.payment.textContent + ' ' + buyEls.paymentLabel.textContent;
+    window.NadoVeloSite.updateFormComment(text);
+  }
 
   function updateBuyoutCalc() {
     if (!buyEls.model) return;
@@ -197,10 +223,10 @@
 
     if (overpay <= retail * 0.1) {
       buyEls.overpayBadge.className = 'calc-compare-badge good';
-      buyEls.overpayBadge.textContent = '✓ Выгоднее чистой аренды';
+      buyEls.overpayBadge.textContent = 'Выгоднее чистой аренды';
     } else {
       buyEls.overpayBadge.className = 'calc-compare-badge neutral';
-      buyEls.overpayBadge.textContent = '≈ Сопоставимо с долгой арендой';
+      buyEls.overpayBadge.textContent = 'Сопоставимо с долгой арендой';
     }
 
     const rentDaily = MODELS.pro.daily;
@@ -223,8 +249,9 @@
       '<div class="calc-row"><span class="label">Велосипед ваш</span><span class="val">через ' + termMonths + ' мес.</span></div>';
 
     buyEls.tip.textContent =
-      model.name + ' — розница ' + fmt(model.retail) + '. ' +
-      'Как у Крути и ArendaVelo: без кредитной истории, можно вернуть в любой момент.';
+      model.name + ' — розница ' + fmt(model.retail) + '. Расчёт ориентировочный, точные условия уточняйте у менеджера. Без кредитной истории.';
+
+    syncFormFromBuyout();
   }
 
   if (buyEls.model) {
@@ -247,38 +274,19 @@
     updateBuyoutCalc();
   }
 
-  // Animated counters for stats
-  const statNums = document.querySelectorAll('[data-count]');
-  const countObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = el.dataset.count;
-      const suffix = el.dataset.suffix || '';
-      const prefix = el.dataset.prefix || '';
+  document.querySelectorAll('[data-count]').forEach((el) => {
+    const target = el.dataset.count;
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    if (el.dataset.static === 'true') return;
+    const num = parseFloat(target);
+    if (Number.isNaN(num)) {
+      el.textContent = prefix + target + suffix;
+      return;
+    }
+    el.textContent = prefix + target + suffix;
+    el.classList.add('counted');
+  });
 
-      if (target.includes('+') || target.includes('мин') || target.includes('₽') || target.includes('/')) {
-        el.textContent = prefix + target + suffix;
-        countObserver.unobserve(el);
-        return;
-      }
-
-      const num = parseFloat(target);
-      const isFloat = target.includes('.');
-      const duration = 1200;
-      const start = performance.now();
-
-      function tick(now) {
-        const p = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        const current = num * eased;
-        el.textContent = prefix + (isFloat ? current.toFixed(1) : Math.round(current)) + suffix;
-        if (p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-      countObserver.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-
-  statNums.forEach((el) => countObserver.observe(el));
+  window.NadoVeloCalc = { switchTab: switchTab };
 })();

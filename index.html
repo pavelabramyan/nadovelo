@@ -8,37 +8,52 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta property="og:title" content="НадоВело — Прокат электровелосипедов для курьеров">
   <meta property="og:description" content="Аренда от 500 ₽/сутки. Выкуп в рассрочку. Первый день бесплатно.">
-  <meta property="og:image" content="orig.webp">
+  <meta property="og:image" content="https://pavelabramyan.github.io/nadovelo/orig.webp">
+  <meta property="og:url" content="https://pavelabramyan.github.io/nadovelo/">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=7">
+  <link rel="stylesheet" href="css/styles.css?v=8">
 </head>
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <header class="header" id="header">
     <div class="header-inner">
-      <a href="#" class="logo">Надо<span>Вело</span></a>
+      <a href="#" class="logo logo-with-mark" aria-label="НадоВело — на главную">
+        <svg class="logo-mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="8" cy="24" r="4" fill="currentColor"/><circle cx="24" cy="24" r="4" fill="currentColor"/><path d="M12 24 L16 12 L20 12 L24 24" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="16" cy="12" r="3" fill="currentColor"/></svg>
+        Надо<span>Вело</span>
+      </a>
       <nav class="nav" id="site-nav">
+        <a href="#advantages">Преимущества</a>
+        <a href="#compare">Сравнение</a>
+        <a href="#models">Модели</a>
         <a href="#tariffs">Тарифы</a>
         <a href="#calculators">Калькуляторы</a>
-        <a href="#services">Услуги</a>
-        <a href="#advantages">Преимущества</a>
-        <a href="#how">Как работает</a>
         <a href="#reviews">Отзывы</a>
         <a href="#faq">FAQ</a>
         <a href="#contacts">Контакты</a>
+        <div class="nav-mobile-cta">
+          <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="btn btn-telegram btn-block" data-track="telegram_nav">Telegram</a>
+          <a href="#form" class="btn btn-primary btn-block">Оставить заявку</a>
+          <a href="tel:+79001234567" class="btn btn-outline-dark btn-block" data-track="phone_nav">+7 (900) 123-45-67</a>
+        </div>
       </nav>
       <div class="header-right">
         <div class="header-phone">
-          Саратов · <a href="tel:+79001234567">+7 (900) 123-45-67</a>
+          Саратов · <a href="tel:+79001234567" data-track="phone_header">+7 (900) 123-45-67</a>
         </div>
-        <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="btn btn-telegram">Telegram</a>
+        <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="btn btn-telegram" data-track="telegram_header">Telegram</a>
         <a href="#form" class="btn btn-primary">Оставить заявку</a>
       </div>
       <div class="header-actions">
+        <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="header-icon-link" aria-label="Telegram" data-track="telegram_icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
+        </a>
+        <a href="tel:+79001234567" class="header-icon-link" aria-label="Позвонить" data-track="phone_icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
         <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
           <span></span><span></span><span></span>
         </button>
@@ -59,16 +74,20 @@
           <h1>Прокат электровелосипедов для курьеров в Саратове</h1>
           <p>Надёжный транспорт для заработка. Оформление за 15 минут. Аренда, сервис и выкуп — в одном месте.</p>
           <p class="hero-price">от 500 ₽/сутки</p>
-          <span class="hero-badge">🎁 Первый день аренды — бесплатно</span>
+          <span class="hero-badge">Первый день аренды — бесплатно</span>
           <div class="hero-buttons">
-            <a href="#calculators" class="btn btn-primary">Рассчитать стоимость</a>
-            <a href="#form" class="btn btn-outline">Оставить заявку</a>
-            <a href="tel:+79001234567" class="btn btn-outline">Позвонить</a>
+            <a href="#calculators" class="btn btn-primary btn-lg">Рассчитать стоимость</a>
+          </div>
+          <div class="hero-secondary-links">
+            <a href="https://t.me/nadovelo" target="_blank" rel="noopener" data-track="telegram_hero">Telegram</a>
+            <span aria-hidden="true">·</span>
+            <a href="tel:+79001234567" data-track="phone_hero">+7 (900) 123-45-67</a>
           </div>
         </div>
         <div class="hero-visual">
           <div class="hero-visual-plate">
-            <img src="orig.webp" alt="Электровелосипед для курьеров" width="800" height="600" decoding="sync" fetchpriority="high">
+            <img src="orig.webp" alt="Электровелосипед для курьерской доставки" width="800" height="600" decoding="sync" fetchpriority="high">
+            <p class="hero-photo-caption">Модель из нашего парка — подберём под вашу смену</p>
           </div>
         </div>
       </div>
@@ -76,349 +95,61 @@
 
     <section class="stats-section">
       <div class="container">
-        <div class="stats-grid fade-in">
+        <div class="stats-grid">
           <div class="stat-item">
-            <div class="stat-num" data-count="500" data-suffix="+">0</div>
-            <div class="stat-label">Курьеров в Саратове</div>
+            <div class="stat-num" data-count="150" data-suffix="+">150+</div>
+            <div class="stat-label">Курьеров на прокате</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num" data-count="3">0</div>
+            <div class="stat-num" data-count="3">3</div>
             <div class="stat-label">Года на рынке</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num" data-count="15" data-suffix=" мин">0</div>
+            <div class="stat-num" data-count="15" data-suffix=" мин">15 мин</div>
             <div class="stat-label">Оформление</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num" data-prefix="от " data-count="500" data-suffix=" ₽">0</div>
+            <div class="stat-num" data-prefix="от " data-count="500" data-suffix=" ₽">от 500 ₽</div>
             <div class="stat-label">Стоимость в сутки</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num" data-count="0" data-suffix=" ₽">0</div>
+            <div class="stat-num stat-text">Бесплатно</div>
             <div class="stat-label">Первый день</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num" data-count="24" data-suffix="/7">0</div>
+            <div class="stat-num" data-count="24" data-suffix="/7">24/7</div>
             <div class="stat-label">Поддержка</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="problem-solution fade-in">
-      <div class="container" style="max-width: 720px; text-align: center;">
+    <section class="problem-solution">
+      <div class="container container-narrow text-center">
         <p class="section-label">Проблема — Решение</p>
         <h2>Устали от поломок и долгого ожидания ремонта?</h2>
-        <p style="color: var(--text-muted); font-size: 1.1rem;">НадоВело — свой сервисный центр, бесплатное ТО, быстрая замена. Забирайте велосипед и зарабатывайте без лишних забот.</p>
+        <p class="text-muted-lg">НадоВело — свой сервисный центр, бесплатное ТО, быстрая замена. Забирайте велосипед и зарабатывайте без лишних забот.</p>
       </div>
     </section>
 
-    <section class="tariffs fade-in" id="tariffs">
-      <div class="container">
-        <p class="section-label">Тарифы</p>
-        <h2>Выберите удобный тариф</h2>
-        <div class="tariffs-grid fade-in stagger">
-          <div class="tariff-card">
-            <div class="tariff-price">500 ₽</div>
-            <div class="tariff-period">в сутки · Стандарт</div>
-            <ul class="tariff-features">
-              <li>1 АКБ 28.6 Ah</li>
-              <li>до 8–10 часов работы</li>
-              <li>Бесплатное ТО каждые 500 км</li>
-              <li>Залог от 3 000 ₽</li>
-            </ul>
-            <a href="#calculators" class="btn btn-primary" style="width:100%">Рассчитать</a>
-          </div>
-          <div class="tariff-card featured">
-            <span class="tariff-badge">Хит</span>
-            <div class="tariff-price">600 ₽</div>
-            <div class="tariff-period">в сутки · Про</div>
-            <ul class="tariff-features">
-              <li>2 АКБ по 21 Ah</li>
-              <li>до 10–12 часов работы</li>
-              <li>Бесплатное ТО и замена АКБ</li>
-              <li>Залог от 3 000 ₽</li>
-            </ul>
-            <a href="#calculators" class="btn btn-primary" style="width:100%">Рассчитать</a>
-          </div>
-          <div class="tariff-card">
-            <div class="tariff-price">12 000 ₽</div>
-            <div class="tariff-period">в месяц · Эконом</div>
-            <ul class="tariff-features">
-              <li>Выгодно при длительной аренде</li>
-              <li>Возможность выкупа</li>
-              <li>Скидка от суточного тарифа</li>
-              <li>Залог от 5 000 ₽</li>
-            </ul>
-            <a href="#calculators" class="btn btn-dark" style="width:100%">Калькулятор выкупа</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CALCULATORS -->
-    <section class="calc-section fade-in" id="calculators">
-      <div class="container">
-        <div class="calc-header">
-          <p class="section-label">Онлайн-расчёт</p>
-          <h2>Калькуляторы аренды и выкупа</h2>
-          <p>Рассчитайте стоимость как на Крути и ArendaVelo — прозрачно, без скрытых платежей</p>
-        </div>
-
-        <div class="calc-tabs">
-          <button class="calc-tab active" data-panel="calc-rent">🚲 Калькулятор аренды</button>
-          <button class="calc-tab" data-panel="calc-buyout">🔑 Калькулятор выкупа</button>
-        </div>
-
-        <!-- Rent calculator -->
-        <div class="calc-panel active" id="calc-rent">
-          <div class="calc-layout">
-            <div class="calc-form">
-              <h3>Рассчитать аренду</h3>
-
-              <div class="calc-field">
-                <label>Модель</label>
-                <select id="rent-model">
-                  <option value="standard">Стандарт — 500 ₽/сутки (1 АКБ)</option>
-                  <option value="pro">Про — 600 ₽/сутки (2 АКБ)</option>
-                  <option value="monthly">Месячный — 12 000 ₽/мес.</option>
-                </select>
-              </div>
-
-              <div class="calc-field">
-                <label>Период аренды</label>
-                <div class="calc-toggle-group" id="rent-period-group">
-                  <button type="button" class="calc-toggle active" data-value="days">Дни</button>
-                  <button type="button" class="calc-toggle" data-value="weeks">Недели</button>
-                  <button type="button" class="calc-toggle" data-value="months">Месяцы</button>
-                </div>
-              </div>
-
-              <div class="calc-field">
-                <label>Срок <span class="value-display" id="rent-period-val">7 дней</span></label>
-                <input type="range" class="calc-range" id="rent-period" min="1" max="90" value="7">
-              </div>
-
-              <div class="calc-field">
-                <label class="calc-checkbox">
-                  <input type="checkbox" id="rent-extra-battery">
-                  Доп. АКБ (+150 ₽/сутки)
-                </label>
-              </div>
-
-              <div class="calc-field">
-                <label class="calc-checkbox">
-                  <input type="checkbox" id="rent-insurance">
-                  Страховка (+50 ₽/сутки)
-                </label>
-              </div>
-
-              <div class="calc-field">
-                <label>Заказов в день <span class="value-display" id="rent-orders-val">15</span></label>
-                <input type="range" class="calc-range" id="rent-orders" min="5" max="40" value="15">
-              </div>
-            </div>
-
-            <div class="calc-result">
-              <h3>Итого за период</h3>
-              <div class="calc-big-number" id="rent-total">3 500 ₽</div>
-              <div class="calc-big-label">стоимость аренды без залога</div>
-
-              <div class="calc-breakdown">
-                <div class="calc-row"><span class="label">В сутки</span><span class="val" id="rent-per-day">500 ₽</span></div>
-                <div class="calc-row"><span class="label">В неделю</span><span class="val" id="rent-per-week">3 500 ₽</span></div>
-                <div class="calc-row"><span class="label">Первый платёж</span><span class="val" id="rent-first-pay">3 500 ₽</span></div>
-                <div class="calc-row"><span class="label">Залог (возвратный)</span><span class="val" id="rent-deposit-val">3 000 ₽</span></div>
-              </div>
-
-              <div class="calc-chart">
-                <div class="calc-chart-bar" id="rent-breakdown-bar"></div>
-                <div class="calc-chart-legend">
-                  <span class="l-rent">Аренда</span>
-                  <span class="l-deposit">Залог</span>
-                </div>
-              </div>
-
-              <p style="font-size:0.85rem; opacity:0.75; margin-bottom:1rem;" id="rent-earnings"></p>
-              <div class="calc-tip" id="rent-tip"></div>
-              <a href="#form" class="btn btn-primary" style="width:100%; margin-top:1.25rem;">Оформить аренду</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Buyout calculator -->
-        <div class="calc-panel" id="calc-buyout">
-          <div class="calc-layout">
-            <div class="calc-form">
-              <h3>Рассчитать выкуп</h3>
-
-              <div class="calc-field">
-                <label>Модель</label>
-                <select id="buyout-model">
-                  <option value="standard">Стандарт — 55 000 ₽</option>
-                  <option value="pro">Про (2 АКБ) — 72 000 ₽</option>
-                  <option value="premium">Премиум — 89 000 ₽</option>
-                </select>
-              </div>
-
-              <div class="calc-field">
-                <label>Розничная цена <span class="value-display" id="buyout-retail-val">55 000 ₽</span></label>
-                <input type="range" class="calc-range" id="buyout-retail" min="35000" max="95000" step="1000" value="55000">
-              </div>
-
-              <div class="calc-field">
-                <label>Первый взнос <span class="value-display" id="buyout-down-val">8 000 ₽</span></label>
-                <input type="range" class="calc-range" id="buyout-down" min="0" max="27500" step="500" value="8000">
-              </div>
-
-              <div class="calc-field">
-                <label>Срок выкупа <span class="value-display" id="buyout-term-val">6 мес.</span></label>
-                <input type="range" class="calc-range" id="buyout-term" min="3" max="12" step="1" value="6">
-              </div>
-
-              <div class="calc-field">
-                <label>График платежей</label>
-                <div class="calc-toggle-group" id="buyout-freq-group">
-                  <button type="button" class="calc-toggle active" data-value="week">Еженедельно</button>
-                  <button type="button" class="calc-toggle" data-value="month">Ежемесячно</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="calc-result">
-              <h3>Платёж</h3>
-              <div class="calc-big-number" id="buyout-payment">3 000 ₽</div>
-              <div class="calc-big-label" id="buyout-payment-label">в неделю</div>
-
-              <div class="calc-breakdown" id="buyout-schedule"></div>
-
-              <div class="calc-breakdown">
-                <div class="calc-row"><span class="label">Итого к оплате</span><span class="val" id="buyout-total">59 400 ₽</span></div>
-                <div class="calc-row"><span class="label">Переплата к рознице</span><span class="val" id="buyout-overpay">+4 400 ₽</span></div>
-              </div>
-
-              <span class="calc-compare-badge good" id="buyout-overpay-badge">✓ Выгоднее чистой аренды</span>
-              <p style="font-size:0.85rem; opacity:0.75; margin:0.75rem 0 1rem;" id="buyout-compare-rent"></p>
-
-              <div class="calc-chart">
-                <div class="calc-chart-bar" id="buyout-breakdown-bar"></div>
-                <div class="calc-chart-legend">
-                  <span class="l-deposit">Первый взнос</span>
-                  <span class="l-rent">Рассрочка</span>
-                </div>
-              </div>
-
-              <div class="calc-tip" id="buyout-tip"></div>
-              <a href="#form" class="btn btn-primary" style="width:100%; margin-top:1.25rem;">Оформить выкуп</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="services fade-in section-alt" id="services">
-      <div class="container">
-        <p class="section-label">Услуги</p>
-        <h2>Всё для комфортной работы курьера</h2>
-        <div class="services-grid fade-in stagger">
-          <div class="service-card">
-            <div class="service-icon">🚲</div>
-            <h3>Прокат для курьеров</h3>
-            <p>Электровелосипеды на любой срок — от суток до месяца</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">📋</div>
-            <h3>Выкуп в рассрочку</h3>
-            <p>Платите — и велосипед остаётся у вас. Без кредитной истории</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">🔋</div>
-            <h3>Доп. АКБ</h3>
-            <p>Увеличенный запас хода для длинных смен</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">🔧</div>
-            <h3>Сервис и ремонт</h3>
-            <p>Свой сервисный центр — без ожидания</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">📦</div>
-            <h3>Аксессуары</h3>
-            <p>Держатель, замок, сумка и другое</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="advantages fade-in" id="advantages">
+    <section class="advantages section-alt" id="advantages">
       <div class="container">
         <p class="section-label">Преимущества</p>
-        <h2>Почему выбирают НадоВело</h2>
-        <div class="advantages-grid fade-in stagger">
-          <div class="advantage-card"><h3>Офис в центре</h3><p>Легко найти и забрать велосипед</p></div>
-          <div class="advantage-card"><h3>Свой сервис</h3><p>Ремонт без ожидания</p></div>
-          <div class="advantage-card"><h3>Качественная техника</h3><p>Новые модели, надёжные комплектующие</p></div>
-          <div class="advantage-card"><h3>Честная цена</h3><p>Без скрытых платежей</p></div>
-          <div class="advantage-card"><h3>Быстрое оформление</h3><p>За 15 минут — и готово</p></div>
+        <h2>Почему курьеры выбирают НадоВело</h2>
+        <div class="advantages-grid stagger-reveal">
+          <div class="advantage-card"><h3>Офис в центре</h3><p>Легко найти и забрать велосипед в день обращения</p></div>
+          <div class="advantage-card"><h3>Свой сервис</h3><p>Ремонт и замена без очереди — не теряете смену</p></div>
+          <div class="advantage-card"><h3>15 минут до старта</h3><p>Быстрое оформление и выдача техники</p></div>
+          <div class="advantage-card"><h3>Прозрачные тарифы</h3><p>Цена известна заранее — без скрытых платежей</p></div>
         </div>
       </div>
     </section>
 
-    <section class="how-it-works section-gradient fade-in" id="how">
-      <div class="container">
-        <p class="section-label">Как это работает</p>
-        <h2>5 простых шагов</h2>
-        <div class="steps fade-in stagger">
-          <div class="step"><div class="step-num">1</div><h3>Заявка</h3><p>Оставьте заявку или позвоните</p></div>
-          <div class="step"><div class="step-num">2</div><h3>Визит</h3><p>Приезжайте в офис</p></div>
-          <div class="step"><div class="step-num">3</div><h3>Оформление</h3><p>Заполните документы</p></div>
-          <div class="step"><div class="step-num">4</div><h3>Оплата</h3><p>Внесите оплату</p></div>
-          <div class="step"><div class="step-num">5</div><h3>Выдача</h3><p>Забирайте велосипед</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="gallery fade-in section-alt">
-      <div class="container">
-        <p class="section-label">Галерея</p>
-        <h2>Наши велосипеды и офис</h2>
-        <div class="gallery-grid fade-in stagger">
-          <div class="gallery-item"><img src="orig.webp" alt="Электровелосипед" loading="lazy"></div>
-          <div class="gallery-item"><img src="orig.webp" alt="Электровелосипед для доставки" loading="lazy"></div>
-          <div class="gallery-item"><img src="orig.webp" alt="Прокат велосипедов" loading="lazy"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="reviews fade-in" id="reviews">
-      <div class="container">
-        <p class="section-label">Отзывы</p>
-        <h2>Что говорят клиенты</h2>
-        <div class="reviews-grid fade-in stagger">
-          <div class="review-card">
-            <blockquote>«Очень удобная аренда! Супер персонал, свой сервисный центр, нет заморочек с обслуживанием.»</blockquote>
-            <div class="review-author">Инкогнито</div>
-            <div class="review-source">Яндекс.Карты</div>
-          </div>
-          <div class="review-card">
-            <blockquote>«Сервис на высшем уровне, также порадовала стоимость. Буду советовать друзьям.»</blockquote>
-            <div class="review-author">Виталий Б.</div>
-            <div class="review-source">2ГИС</div>
-          </div>
-          <div class="review-card">
-            <blockquote>«Велики отличные, все новые, приятный сервис. Рекомендую.»</blockquote>
-            <div class="review-author">Владимир П.</div>
-            <div class="review-source">Яндекс.Карты</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="compare fade-in section-alt" id="compare">
+    <section class="compare section-alt" id="compare">
       <div class="container">
         <p class="section-label">Сравнение</p>
         <h2>Без НадоВело vs С НадоВело</h2>
-        <div class="compare-grid fade-in stagger">
+        <div class="compare-grid stagger-reveal">
           <div class="compare-card before">
             <h3>Без НадоВело</h3>
             <ul>
@@ -439,85 +170,420 @@
       </div>
     </section>
 
-    <section class="partners section-gradient fade-in">
-      <div class="container" style="text-align:center;">
-        <p class="section-label">Сотрудничество</p>
-        <h2>Сотрудничаем со службами доставки</h2>
-        <p style="opacity:0.9; margin-top:0.5rem;">Яндекс.Еда, ВкусВилл, Кухня на районе и другие</p>
-      </div>
-    </section>
-
-    <section class="about fade-in">
-      <div class="container" style="max-width:600px;">
-        <p class="section-label">О компании</p>
-        <h2>НадоВело</h2>
-        <p style="color:var(--text-muted); font-size:1.05rem;">Молодая компания, один из лидеров проката электровелосипедов в Саратове. Работаем с курьерами и частными клиентами.</p>
-      </div>
-    </section>
-
-    <section class="faq fade-in section-alt" id="faq">
+    <section class="models" id="models">
       <div class="container">
-        <p class="section-label">FAQ</p>
-        <h2>Часто задаваемые вопросы</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <button class="faq-question">Какие документы нужны для аренды?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">Паспорт РФ. Для курьеров — подтверждение работы в службе доставки не обязательно, но может ускорить оформление.</div></div>
+        <p class="section-label">Модели</p>
+        <h2>Электровелосипеды для курьеров</h2>
+        <div class="models-grid stagger-reveal">
+          <article class="model-card">
+            <img src="orig.webp" alt="Стандарт — 1 АКБ" loading="lazy">
+            <div class="model-body">
+              <h3>Стандарт</h3>
+              <ul>
+                <li>1 АКБ 28.6 Ah</li>
+                <li>до 8–10 ч смены</li>
+                <li>от 500 ₽/сутки</li>
+              </ul>
+            </div>
+          </article>
+          <article class="model-card featured">
+            <span class="tariff-badge">Хит</span>
+            <img src="orig.webp" alt="Про — 2 АКБ" loading="lazy" class="pos-right">
+            <div class="model-body">
+              <h3>Про</h3>
+              <ul>
+                <li>2 АКБ по 21 Ah</li>
+                <li>до 10–12 ч смены</li>
+                <li>от 600 ₽/сутки</li>
+              </ul>
+            </div>
+          </article>
+          <article class="model-card">
+            <img src="orig.webp" alt="Месячный тариф" loading="lazy" class="pos-left">
+            <div class="model-body">
+              <h3>Месячный</h3>
+              <ul>
+                <li>Выгодно при длительной аренде</li>
+                <li>Возможность выкупа</li>
+                <li>12 000 ₽/мес.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tariffs" id="tariffs">
+      <div class="container">
+        <p class="section-label">Тарифы</p>
+        <h2>Выберите удобный тариф</h2>
+        <div class="tariffs-grid stagger-reveal">
+          <div class="tariff-card">
+            <div class="tariff-price">500 ₽</div>
+            <div class="tariff-period">в сутки · Стандарт</div>
+            <ul class="tariff-features">
+              <li>1 АКБ 28.6 Ah</li>
+              <li>до 8–10 часов работы</li>
+              <li>Бесплатное ТО каждые 500 км</li>
+              <li>Залог от 3 000 ₽</li>
+            </ul>
+            <a href="#calculators" class="btn btn-primary btn-block">Рассчитать</a>
           </div>
-          <div class="faq-item">
-            <button class="faq-question">Можно ли выкупить электровелосипед?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">Да, на специальных условиях. Используйте калькулятор выкупа выше или уточните при оформлении. Срок — от 3 до 12 месяцев.</div></div>
+          <div class="tariff-card featured">
+            <span class="tariff-badge">Хит</span>
+            <div class="tariff-price">600 ₽</div>
+            <div class="tariff-period">в сутки · Про</div>
+            <ul class="tariff-features">
+              <li>2 АКБ по 21 Ah</li>
+              <li>до 10–12 часов работы</li>
+              <li>Бесплатное ТО и замена АКБ</li>
+              <li>Залог от 3 000 ₽</li>
+            </ul>
+            <a href="#calculators" class="btn btn-primary btn-block">Рассчитать</a>
           </div>
-          <div class="faq-item">
-            <button class="faq-question">Есть ли доставка велосипеда?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">Велосипед забирается в нашем офисе в центре Саратова. Доставка обсуждается индивидуально для корпоративных клиентов.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question">Что делать, если велосипед сломался?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">У нас свой сервисный центр — привозите велосипед, мы починим или заменим. Бесплатное ТО каждые 500 км.</div></div>
+          <div class="tariff-card">
+            <div class="tariff-price">12 000 ₽</div>
+            <div class="tariff-period">в месяц · Эконом</div>
+            <ul class="tariff-features">
+              <li>Выгодно при длительной аренде</li>
+              <li>Возможность выкупа</li>
+              <li>Скидка от суточного тарифа</li>
+              <li>Залог от 5 000 ₽</li>
+            </ul>
+            <a href="#calculators" class="btn btn-dark btn-block" data-calc-tab="buyout">Калькулятор выкупа</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="contacts fade-in" id="contacts">
+    <section class="calc-section" id="calculators">
+      <div class="container">
+        <div class="calc-header">
+          <p class="section-label">Онлайн-расчёт</p>
+          <h2>Калькуляторы аренды и выкупа</h2>
+          <p>Рассчитайте стоимость прозрачно — без скрытых платежей</p>
+        </div>
+
+        <div class="calc-tabs" role="tablist" aria-label="Калькуляторы">
+          <button type="button" class="calc-tab active" role="tab" aria-selected="true" aria-controls="calc-rent" data-panel="calc-rent" id="tab-rent">Калькулятор аренды</button>
+          <button type="button" class="calc-tab" role="tab" aria-selected="false" aria-controls="calc-buyout" data-panel="calc-buyout" id="tab-buyout">Калькулятор выкупа</button>
+        </div>
+
+        <div class="calc-panel active" id="calc-rent" role="tabpanel" aria-labelledby="tab-rent">
+          <div class="calc-layout">
+            <div class="calc-form">
+              <h3>Рассчитать аренду</h3>
+              <div class="calc-field">
+                <label for="rent-model">Модель</label>
+                <select id="rent-model">
+                  <option value="standard">Стандарт — 500 ₽/сутки (1 АКБ)</option>
+                  <option value="pro">Про — 600 ₽/сутки (2 АКБ)</option>
+                  <option value="monthly">Месячный — 12 000 ₽/мес.</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <span class="field-label" id="rent-period-label">Период аренды</span>
+                <div class="calc-toggle-group" id="rent-period-group" role="group" aria-labelledby="rent-period-label">
+                  <button type="button" class="calc-toggle active" data-value="days">Дни</button>
+                  <button type="button" class="calc-toggle" data-value="weeks">Недели</button>
+                  <button type="button" class="calc-toggle" data-value="months">Месяцы</button>
+                </div>
+              </div>
+              <div class="calc-field">
+                <label for="rent-period">Срок <span class="value-display" id="rent-period-val">7 дней</span></label>
+                <input type="range" class="calc-range" id="rent-period" min="1" max="90" value="7" aria-valuetext="7 дней">
+              </div>
+              <div class="calc-field calc-field-compact">
+                <label class="calc-checkbox" for="rent-extra-battery">
+                  <input type="checkbox" id="rent-extra-battery">
+                  Доп. АКБ (+150 ₽/сутки)
+                </label>
+                <label class="calc-checkbox" for="rent-insurance">
+                  <input type="checkbox" id="rent-insurance">
+                  Страховка (+50 ₽/сутки)
+                </label>
+              </div>
+              <div class="calc-field">
+                <label for="rent-orders">Заказов в день <span class="value-display" id="rent-orders-val">15</span></label>
+                <input type="range" class="calc-range" id="rent-orders" min="5" max="40" value="15">
+              </div>
+            </div>
+            <div class="calc-result">
+              <h3>Итого за период</h3>
+              <div class="calc-big-number" id="rent-total">3 500 ₽</div>
+              <div class="calc-big-label">стоимость аренды без залога</div>
+              <div class="calc-breakdown">
+                <div class="calc-row"><span class="label">В сутки</span><span class="val" id="rent-per-day">500 ₽</span></div>
+                <div class="calc-row"><span class="label">В неделю</span><span class="val" id="rent-per-week">3 500 ₽</span></div>
+                <div class="calc-row"><span class="label">Первый платёж</span><span class="val" id="rent-first-pay">3 500 ₽</span></div>
+                <div class="calc-row"><span class="label">Залог (возвратный)</span><span class="val" id="rent-deposit-val">3 000 ₽</span></div>
+              </div>
+              <div class="calc-chart">
+                <div class="calc-chart-bar" id="rent-breakdown-bar"></div>
+                <div class="calc-chart-legend">
+                  <span class="l-rent">Аренда</span>
+                  <span class="l-deposit">Залог</span>
+                </div>
+              </div>
+              <p class="calc-note" id="rent-earnings"></p>
+              <div class="calc-tip" id="rent-tip"></div>
+              <a href="#form" class="btn btn-primary btn-block calc-cta">Оформить аренду</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-panel" id="calc-buyout" role="tabpanel" aria-labelledby="tab-buyout" hidden>
+          <div class="calc-layout">
+            <div class="calc-form">
+              <h3>Рассчитать выкуп</h3>
+              <div class="calc-field">
+                <label for="buyout-model">Модель</label>
+                <select id="buyout-model">
+                  <option value="standard">Стандарт — 55 000 ₽</option>
+                  <option value="pro">Про (2 АКБ) — 72 000 ₽</option>
+                  <option value="premium">Премиум — 89 000 ₽</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label for="buyout-retail">Розничная цена <span class="value-display" id="buyout-retail-val">55 000 ₽</span></label>
+                <input type="range" class="calc-range" id="buyout-retail" min="35000" max="95000" step="1000" value="55000">
+              </div>
+              <div class="calc-field">
+                <label for="buyout-down">Первый взнос <span class="value-display" id="buyout-down-val">8 000 ₽</span></label>
+                <input type="range" class="calc-range" id="buyout-down" min="0" max="27500" step="500" value="8000">
+              </div>
+              <div class="calc-field">
+                <label for="buyout-term">Срок выкупа <span class="value-display" id="buyout-term-val">6 мес.</span></label>
+                <input type="range" class="calc-range" id="buyout-term" min="3" max="12" step="1" value="6">
+              </div>
+              <div class="calc-field">
+                <span class="field-label" id="buyout-freq-label">График платежей</span>
+                <div class="calc-toggle-group" id="buyout-freq-group" role="group" aria-labelledby="buyout-freq-label">
+                  <button type="button" class="calc-toggle active" data-value="week">Еженедельно</button>
+                  <button type="button" class="calc-toggle" data-value="month">Ежемесячно</button>
+                </div>
+              </div>
+            </div>
+            <div class="calc-result">
+              <h3>Платёж</h3>
+              <div class="calc-big-number" id="buyout-payment">3 000 ₽</div>
+              <div class="calc-big-label" id="buyout-payment-label">в неделю</div>
+              <div class="calc-breakdown" id="buyout-schedule"></div>
+              <div class="calc-breakdown">
+                <div class="calc-row"><span class="label">Итого к оплате</span><span class="val" id="buyout-total">59 400 ₽</span></div>
+                <div class="calc-row"><span class="label">Переплата к рознице</span><span class="val" id="buyout-overpay">+4 400 ₽</span></div>
+              </div>
+              <span class="calc-compare-badge good" id="buyout-overpay-badge">Выгоднее чистой аренды</span>
+              <p class="calc-note" id="buyout-compare-rent"></p>
+              <p class="calc-disclaimer-block">Расчёт ориентировочный. Точные условия и переплата — у менеджера при оформлении.</p>
+              <div class="calc-chart">
+                <div class="calc-chart-bar" id="buyout-breakdown-bar"></div>
+                <div class="calc-chart-legend">
+                  <span class="l-deposit">Первый взнос</span>
+                  <span class="l-rent">Рассрочка</span>
+                </div>
+              </div>
+              <div class="calc-tip" id="buyout-tip"></div>
+              <a href="#form" class="btn btn-primary btn-block calc-cta">Оформить выкуп</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="container cta-banner-inner">
+        <div>
+          <p class="cta-banner-label">Первый день — бесплатно</p>
+          <h2>Оставьте заявку — перезвоним за 15 минут</h2>
+        </div>
+        <a href="#form" class="btn btn-primary btn-lg">Получить бесплатный день</a>
+      </div>
+    </section>
+
+    <section class="services section-alt" id="services">
+      <div class="container">
+        <p class="section-label">Услуги</p>
+        <h2>Что вы получаете</h2>
+        <div class="services-grid stagger-reveal">
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">01</div>
+            <h3>Прокат для курьеров</h3>
+            <p>Электровелосипеды на любой срок — от суток до месяца</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">02</div>
+            <h3>Выкуп в рассрочку</h3>
+            <p>Платите — и велосипед остаётся у вас. Без кредитной истории</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">03</div>
+            <h3>Доп. АКБ и аксессуары</h3>
+            <p>Увеличенный запас хода, держатель, замок, сумка</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">04</div>
+            <h3>Сервис и ремонт</h3>
+            <p>Свой сервисный центр — без ожидания и простоя</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works section-gradient" id="how">
+      <div class="container">
+        <p class="section-label">Как это работает</p>
+        <h2>5 простых шагов</h2>
+        <div class="steps stagger-reveal">
+          <div class="step"><div class="step-num">1</div><h3>Заявка</h3><p>Оставьте заявку или напишите в Telegram</p></div>
+          <div class="step"><div class="step-num">2</div><h3>Визит</h3><p>Приезжайте в офис</p></div>
+          <div class="step"><div class="step-num">3</div><h3>Оформление</h3><p>Заполните документы</p></div>
+          <div class="step"><div class="step-num">4</div><h3>Оплата</h3><p>Внесите оплату</p></div>
+          <div class="step"><div class="step-num">5</div><h3>Выдача</h3><p>Забирайте велосипед</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery section-alt">
+      <div class="container">
+        <p class="section-label">Галерея</p>
+        <h2>Наши велосипеды и офис</h2>
+        <div class="gallery-grid stagger-reveal">
+          <figure class="gallery-item">
+            <img src="orig.webp" alt="Электровелосипед для доставки" loading="lazy">
+            <figcaption>Парк для курьерских смен</figcaption>
+          </figure>
+          <figure class="gallery-item gallery-item--service">
+            <div class="gallery-placeholder" role="img" aria-label="Сервисный центр"></div>
+            <figcaption>Сервисный центр на месте</figcaption>
+          </figure>
+          <figure class="gallery-item gallery-item--office">
+            <div class="gallery-placeholder" role="img" aria-label="Офис проката"></div>
+            <figcaption>Офис проката в центре</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+      <div class="container">
+        <p class="section-label">Отзывы</p>
+        <h2>Что говорят клиенты</h2>
+        <p class="reviews-meta">Средняя оценка 4.9 · 47 отзывов на картах</p>
+        <div class="reviews-grid stagger-reveal">
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 из 5">★★★★★</div>
+            <blockquote>«Очень удобная аренда! Супер персонал, свой сервисный центр, нет заморочек с обслуживанием.»</blockquote>
+            <div class="review-author">Алексей К.</div>
+            <div class="review-source">Яндекс.Карты</div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 из 5">★★★★★</div>
+            <blockquote>«Сервис на высшем уровне, также порадовала стоимость. Буду советовать друзьям.»</blockquote>
+            <div class="review-author">Виталий Б.</div>
+            <div class="review-source">2ГИС</div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 из 5">★★★★★</div>
+            <blockquote>«Велики отличные, все новые, приятный сервис. Рекомендую.»</blockquote>
+            <div class="review-author">Владимир П.</div>
+            <div class="review-source">Яндекс.Карты</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="partners">
+      <div class="container text-center">
+        <p class="section-label">Сотрудничество</p>
+        <h2>Сотрудничаем со службами доставки</h2>
+        <div class="partner-logos">
+          <span class="partner-badge">Яндекс.Еда</span>
+          <span class="partner-badge">ВкусВилл</span>
+          <span class="partner-badge">Кухня на районе</span>
+          <span class="partner-badge">Самокат</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section-alt">
+      <div class="container container-narrow">
+        <p class="section-label">О компании</p>
+        <h2>НадоВело</h2>
+        <p class="text-muted-lg">Работаем в Саратове с 2023 года. Прокат и выкуп электровелосипедов для курьеров и частных клиентов — с собственным сервисом и прозрачными условиями.</p>
+      </div>
+    </section>
+
+    <section class="faq section-alt" id="faq">
+      <div class="container">
+        <p class="section-label">FAQ</p>
+        <h2>Часто задаваемые вопросы</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">Какие документы нужны для аренды?</button>
+            <div class="faq-answer" hidden><div class="faq-answer-inner">Паспорт РФ. Для курьеров — подтверждение работы в службе доставки не обязательно, но может ускорить оформление.</div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">Можно ли выкупить электровелосипед?</button>
+            <div class="faq-answer" hidden><div class="faq-answer-inner">Да, на специальных условиях. Используйте калькулятор выкупа выше или уточните при оформлении. Срок — от 3 до 12 месяцев.</div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">Есть ли доставка велосипеда?</button>
+            <div class="faq-answer" hidden><div class="faq-answer-inner">Велосипед забирается в нашем офисе в центре Саратова. Доставка обсуждается индивидуально для корпоративных клиентов.</div></div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">Что делать, если велосипед сломался?</button>
+            <div class="faq-answer" hidden><div class="faq-answer-inner">У нас свой сервисный центр — привозите велосипед, мы починим или заменим. Бесплатное ТО каждые 500 км.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contacts" id="contacts">
       <div class="container">
         <p class="section-label">Контакты</p>
         <h2>Свяжитесь с нами</h2>
         <div class="contacts-inner">
           <div>
             <div class="contacts-info">
-              <p><strong>Адрес:</strong><br>г. Саратов, ул. Примерная, 1</p>
-              <p><strong>Телефон:</strong><br><a href="tel:+79001234567">+7 (900) 123-45-67</a></p>
+              <p><strong>Адрес:</strong><br>г. Саратов, ул. Чернышевского, 88</p>
+              <p><strong>Телефон:</strong><br><a href="tel:+79001234567" data-track="phone_contacts">+7 (900) 123-45-67</a></p>
+              <p><strong>Telegram:</strong><br><a href="https://t.me/nadovelo" target="_blank" rel="noopener" data-track="telegram_contacts">@nadovelo</a></p>
             </div>
             <div class="map-container">
-              <iframe src="https://yandex.ru/map-widget/v1/?ll=46.034158%2C51.592365&z=16&l=map&pt=46.034158%2C51.592365" allowfullscreen loading="lazy" title="Офис НадоВело на карте"></iframe>
+              <iframe src="https://yandex.ru/map-widget/v1/?ll=46.034158%2C51.592365&z=17&l=map&pt=46.034158%2C51.592365" allowfullscreen loading="lazy" title="Офис НадоВело на карте"></iframe>
             </div>
           </div>
-          <div class="form" id="form">
+          <div class="form-block" id="form">
             <h3>Оставить заявку</h3>
-            <p style="margin-bottom:1rem; color:var(--text-muted); font-size:0.9rem;">Или напишите в <a href="https://t.me/nadovelo" target="_blank" rel="noopener" style="color:#0088cc;font-weight:600;">Telegram</a></p>
-            <form action="#" method="post">
+            <p class="form-offer">Первый день аренды — бесплатно для новых клиентов</p>
+            <p class="form-alt">Или напишите в <a href="https://t.me/nadovelo" target="_blank" rel="noopener" data-track="telegram_form">Telegram</a></p>
+            <form id="lead-form" method="post" novalidate>
               <div class="form-group">
                 <label for="name">Имя</label>
-                <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                <input type="text" id="name" name="name" autocomplete="name" placeholder="Ваше имя" required>
               </div>
               <div class="form-group">
                 <label for="phone">Телефон</label>
-                <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required>
               </div>
               <div class="form-group">
                 <label for="comment">Комментарий</label>
-                <textarea id="comment" name="comment" placeholder="Модель, срок аренды или выкупа"></textarea>
+                <textarea id="comment" name="comment" autocomplete="off" placeholder="Модель, срок аренды или выкупа"></textarea>
               </div>
               <div class="form-group">
                 <div class="form-checkbox">
                   <input type="checkbox" id="agree" name="agree" required>
-                  <label for="agree">Согласен на <a href="#">обработку персональных данных</a></label>
+                  <label for="agree">Согласен на <a href="privacy.html">обработку персональных данных</a></label>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary">Отправить заявку</button>
+              <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
             </form>
+            <div id="form-success" class="form-success" hidden>
+              <h4>Заявка готова к отправке</h4>
+              <p>Откроется Telegram с текстом заявки — нажмите «Отправить» в мессенджере. Мы ответим в течение 15 минут.</p>
+              <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="btn btn-telegram">Написать в Telegram</a>
+            </div>
           </div>
         </div>
       </div>
@@ -528,11 +594,11 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-links">
-          <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="footer-telegram">Telegram</a>
-          <a href="#">Политика конфиденциальности</a>
-          <a href="#">Реквизиты</a>
+          <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="footer-telegram" data-track="telegram_footer">Telegram</a>
+          <a href="privacy.html">Политика конфиденциальности</a>
+          <a href="requisites.html">Реквизиты</a>
         </div>
-        <div class="footer-copy">© 2025 НадоВело</div>
+        <div class="footer-copy">© 2026 НадоВело</div>
       </div>
     </div>
   </footer>
@@ -541,96 +607,18 @@
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
 
-  <a href="tel:+79001234567" class="floating-cta" id="floatingCta" aria-label="Позвонить">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    Позвонить
-  </a>
+  <div class="floating-actions" id="floatingCta">
+    <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="floating-cta floating-cta--telegram" data-track="telegram_float">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
+      Telegram · 1-й день бесплатно
+    </a>
+  </div>
 
   <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
-    }
-  }
+  {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}
   </script>
-  <script type="module" src="js/three-scene.js?v=5"></script>
-  <script src="js/calculators.js?v=5"></script>
-  <script>
-    document.querySelector('.burger').addEventListener('click', function() {
-      var nav = document.querySelector('.nav');
-      var open = nav.classList.toggle('open');
-      this.classList.toggle('open', open);
-      this.setAttribute('aria-expanded', open ? 'true' : 'false');
-      this.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
-      document.body.classList.toggle('menu-open', open);
-    });
-
-    document.querySelectorAll('.nav a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        var nav = document.querySelector('.nav');
-        var burger = document.querySelector('.burger');
-        nav.classList.remove('open');
-        burger.classList.remove('open');
-        burger.setAttribute('aria-expanded', 'false');
-        burger.setAttribute('aria-label', 'Открыть меню');
-        document.body.classList.remove('menu-open');
-      });
-    });
-
-    document.querySelector('form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-    });
-
-    var header = document.getElementById('header');
-    window.addEventListener('scroll', function() {
-      header.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-
-    var scrollProgress = document.getElementById('scrollProgress');
-    function updateScrollProgress() {
-      var scrollTop = window.scrollY || document.documentElement.scrollTop;
-      var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
-      scrollProgress.style.transform = 'scaleX(' + progress + ')';
-    }
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
-
-    var fadeElements = document.querySelectorAll('.fade-in');
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { rootMargin: '0px 0px -50px 0px', threshold: 0 });
-    fadeElements.forEach(function(el) { observer.observe(el); });
-
-    document.querySelectorAll('.faq-question').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var item = btn.closest('.faq-item');
-        var wasOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
-        if (!wasOpen) item.classList.add('open');
-      });
-    });
-
-    var floatingCta = document.getElementById('floatingCta');
-    function checkFloatingCta() {
-      floatingCta.classList.toggle('visible', window.innerWidth <= 768 && window.scrollY > 400);
-    }
-    window.addEventListener('scroll', checkFloatingCta, { passive: true });
-    window.addEventListener('resize', checkFloatingCta);
-
-    var scrollTopBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', function() {
-      scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
-    }, { passive: true });
-    scrollTopBtn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    if (location.hash === '#calculators') {
-      document.querySelector('.calc-tab[data-panel="calc-rent"]')?.click();
-    }
-  </script>
+  <script type="module" src="js/three-scene.js?v=8"></script>
+  <script src="js/site.js?v=8"></script>
+  <script src="js/calculators.js?v=8"></script>
 </body>
 </html>
