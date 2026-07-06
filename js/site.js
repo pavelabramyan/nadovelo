@@ -294,10 +294,47 @@
   });
 
   document.querySelectorAll('.gallery-grid').forEach(function (grid) {
-    grid.addEventListener('wheel', function (e) {
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      e.preventDefault();
-      grid.scrollLeft += e.deltaY;
-    }, { passive: false });
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    grid.classList.add('gallery-grid--hover-scroll');
+    var animId = null;
+    var velocity = 0;
+
+    function tick() {
+      if (!velocity) {
+        animId = null;
+        return;
+      }
+      var maxScroll = grid.scrollWidth - grid.clientWidth;
+      if (maxScroll <= 0) {
+        velocity = 0;
+        animId = null;
+        return;
+      }
+      grid.scrollLeft = Math.max(0, Math.min(maxScroll, grid.scrollLeft + velocity));
+      if ((velocity > 0 && grid.scrollLeft >= maxScroll) || (velocity < 0 && grid.scrollLeft <= 0)) {
+        velocity = 0;
+      }
+      animId = requestAnimationFrame(tick);
+    }
+
+    grid.addEventListener('mousemove', function (e) {
+      var rect = grid.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var edge = rect.width * 0.22;
+      if (x < edge) {
+        velocity = -((edge - x) / edge) * 5;
+      } else if (x > rect.width - edge) {
+        velocity = ((x - (rect.width - edge)) / edge) * 5;
+      } else {
+        velocity = 0;
+      }
+      if (velocity && !animId) animId = requestAnimationFrame(tick);
+    });
+
+    grid.addEventListener('mouseleave', function () {
+      velocity = 0;
+    });
   });
 })();

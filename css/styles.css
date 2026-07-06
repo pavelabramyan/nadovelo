@@ -1071,12 +1071,15 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   margin-top: 1.5rem;
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: rgba(20, 184, 166, 0.45) transparent;
-  padding: 0.25rem 0 0.75rem;
+  padding: 0.5rem 0 0.75rem;
+}
+
+.gallery-grid--hover-scroll {
+  cursor: default;
 }
 
 .gallery-grid::-webkit-scrollbar {
@@ -1096,16 +1099,16 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   flex: 0 0 auto;
   width: clamp(160px, 42vw, 280px);
   margin: 0;
-  scroll-snap-align: start;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: none;
   background: transparent;
-  transition: transform 0.3s;
+  position: relative;
+  z-index: 1;
 }
 
 .gallery-item:hover {
-  transform: translateY(-2px);
+  z-index: 4;
 }
 
 .gallery-item img {
@@ -1115,6 +1118,12 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   object-fit: cover;
   display: block;
   border-radius: var(--radius-lg);
+  transition: transform 0.35s ease;
+  transform-origin: center center;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
 }
 
 /* Reviews */
@@ -2028,9 +2037,12 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
 @media (hover: hover) and (pointer: fine) {
   .tariff-card:hover,
   .service-card:hover,
-  .advantage-card:hover,
-  .gallery-item:hover {
+  .advantage-card:hover {
     transform: translateY(-4px);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.08);
   }
 }
 
