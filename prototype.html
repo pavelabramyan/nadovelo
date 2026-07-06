@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>НадоВело — Прототип лендинга</title>
+  <style>
+    /* Прототип: минимальные стили, фокус на структуре */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+      background: #f5f5f5;
+    }
+    .prototype-label {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #333;
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 11px;
+      z-index: 1000;
+    }
+    section {
+      background: #fff;
+      border: 1px dashed #ccc;
+      margin: 12px;
+      padding: 24px;
+      min-height: 80px;
+    }
+    section::before {
+      display: block;
+      font-size: 10px;
+      color: #999;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .header::before { content: "1. Шапка"; }
+    .hero::before { content: "2. Hero"; }
+    .problem-solution::before { content: "3. Проблема — Решение"; }
+    .services::before { content: "4. Услуги"; }
+    .advantages::before { content: "5. Преимущества (УТП)"; }
+    .how-it-works::before { content: "6. Как это работает"; }
+    .gallery::before { content: "7. Галерея"; }
+    .reviews::before { content: "8. Отзывы"; }
+    .partners::before { content: "9. Сотрудничество"; }
+    .about::before { content: "10. О компании"; }
+    .contacts::before { content: "11. Контакты"; }
+    .footer::before { content: "12. Подвал"; }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .header-nav { display: flex; gap: 16px; flex-wrap: wrap; }
+    .header-nav a { color: #666; text-decoration: none; }
+    .header-cta { background: #333; color: #fff; padding: 8px 16px; border-radius: 4px; text-decoration: none; }
+
+    .hero {
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .hero h1 { font-size: 28px; margin-bottom: 12px; }
+    .hero p { color: #666; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .hero-buttons a, .hero-buttons button {
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-primary { background: #333; color: #fff; }
+    .btn-secondary { background: transparent; border: 2px solid #333; color: #333; }
+
+    .services-grid, .advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .service-card, .advantage-card {
+      border: 1px solid #e0e0e0;
+      padding: 16px;
+      border-radius: 4px;
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .step {
+      flex: 1;
+      min-width: 120px;
+      padding: 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .step-num { font-weight: bold; color: #666; margin-bottom: 8px; }
+
+    .gallery-placeholder {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .gallery-placeholder div {
+      aspect-ratio: 16/10;
+      background: #e8e8e8;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 12px;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .review-card {
+      border: 1px solid #e0e0e0;
+      padding: 16px;
+      border-radius: 4px;
+    }
+
+    .form-row { margin-bottom: 12px; }
+    .form-row label { display: block; margin-bottom: 4px; color: #666; }
+    .form-row input, .form-row textarea {
+      width: 100%;
+      max-width: 400px;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer a { color: #666; text-decoration: none; margin-right: 16px; }
+
+    @media (max-width: 600px) {
+      .gallery-placeholder { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="prototype-label">ПРОТОТИП</div>
+
+  <header class="header section">
+    <div>Логотип «НадоВело»</div>
+    <nav class="header-nav">
+      <a href="#services">Услуги</a>
+      <a href="#advantages">Преимущества</a>
+      <a href="#how">Как работает</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div>Саратов | +7 (XXX) XXX-XX-XX</div>
+    <a href="#form" class="header-cta">Оставить заявку</a>
+  </header>
+
+  <section class="hero section">
+    <h1>Прокат электровелосипедов для курьеров в Саратове</h1>
+    <p>Надёжный транспорт для заработка. Оформление за 15 минут. Сервис и выкуп в одном месте.</p>
+    <p><strong>от 500 ₽/сутки</strong></p>
+    <div class="hero-buttons">
+      <a href="#form" class="btn-primary">Оставить заявку</a>
+      <a href="tel:+7XXXXXXXXXX" class="btn-secondary">Позвонить</a>
+    </div>
+    <div style="margin-top: 24px; height: 200px; background: #e8e8e8; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">[Фото электровелосипеда]</div>
+  </section>
+
+  <section class="problem-solution section">
+    <h3>Устали от поломок и долгого ожидания ремонта?</h3>
+    <p>НадоВело — свой сервисный центр, бесплатное ТО, быстрая замена. Забирайте велосипед и зарабатывайте.</p>
+  </section>
+
+  <section class="services section" id="services">
+    <h3>Услуги</h3>
+    <div class="services-grid">
+      <div class="service-card">Прокат для курьеров</div>
+      <div class="service-card">Выкуп в рассрочку</div>
+      <div class="service-card">Доп. АКБ</div>
+      <div class="service-card">Сервис и ремонт</div>
+      <div class="service-card">Аксессуары</div>
+    </div>
+  </section>
+
+  <section class="advantages section" id="advantages">
+    <h3>Преимущества</h3>
+    <div class="advantages-grid">
+      <div class="advantage-card">Офис в центре — легко найти</div>
+      <div class="advantage-card">Свой сервис — без ожидания</div>
+      <div class="advantage-card">Качественная техника</div>
+      <div class="advantage-card">Честная цена</div>
+      <div class="advantage-card">Оформление за 15 минут</div>
+    </div>
+  </section>
+
+  <section class="how-it-works section" id="how">
+    <h3>Как это работает</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div>Оставьте заявку</div>
+      <div class="step"><div class="step-num">2</div>Приезжайте в офис</div>
+      <div class="step"><div class="step-num">3</div>Оформление</div>
+      <div class="step"><div class="step-num">4</div>Оплата</div>
+      <div class="step"><div class="step-num">5</div>Забирайте велосипед</div>
+    </div>
+  </section>
+
+  <section class="gallery section">
+    <h3>Галерея</h3>
+    <div class="gallery-placeholder">
+      <div>Фото 1</div>
+      <div>Фото 2</div>
+      <div>Фото 3</div>
+    </div>
+  </section>
+
+  <section class="reviews section" id="reviews">
+    <h3>Отзывы</h3>
+    <div class="reviews-grid">
+      <div class="review-card">«Очень удобная аренда!» — Яндекс.Карты</div>
+      <div class="review-card">«Сервис на высшем уровне» — 2ГИС</div>
+      <div class="review-card">«Рекомендую» — Яндекс.Карты</div>
+    </div>
+  </section>
+
+  <section class="partners section">
+    <h3>Сотрудничаем со службами доставки</h3>
+    <p>Яндекс.Еда, ВкусВилл, Кухня на районе и другие</p>
+  </section>
+
+  <section class="about section">
+    <h3>О компании</h3>
+    <p>НадоВело — молодая компания, один из лидеров проката электровелосипедов в Саратове.</p>
+  </section>
+
+  <section class="contacts section" id="contacts">
+    <h3>Контакты</h3>
+    <p>г. Саратов, ул. Примерная, 1</p>
+    <p>+7 (XXX) XXX-XX-XX</p>
+    <div style="height: 200px; background: #e8e8e8; border-radius: 8px; margin: 16px 0; display: flex; align-items: center; justify-content: center; color: #999;">[Карта]</div>
+    <h4 id="form">Форма заявки</h4>
+    <form>
+      <div class="form-row">
+        <label>Имя</label>
+        <input type="text" placeholder="Ваше имя">
+      </div>
+      <div class="form-row">
+        <label>Телефон</label>
+        <input type="tel" placeholder="+7 (___) ___-__-__">
+      </div>
+      <div class="form-row">
+        <label>Комментарий</label>
+        <textarea rows="3" placeholder="Опишите, что вас интересует"></textarea>
+      </div>
+      <div class="form-row">
+        <label><input type="checkbox"> Согласие на обработку данных</label>
+      </div>
+      <button type="submit" class="btn-primary">Отправить заявку</button>
+    </form>
+  </section>
+
+  <footer class="footer section">
+    <div>
+      <a href="#">Политика конфиденциальности</a>
+      <a href="#">Реквизиты</a>
+    </div>
+    <div>© 2025 НадоВело</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>ТЗ на создание лендинга «НадоВело»</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #1a1a2e;
+      padding: 40px 50px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 24pt;
+      font-weight: 700;
+      color: #0f3460;
+      margin-bottom: 8px;
+      border-bottom: 3px solid #e94560;
+      padding-bottom: 12px;
+    }
+    
+    .meta {
+      color: #666;
+      font-size: 10pt;
+      margin-bottom: 30px;
+    }
+    
+    .meta span { margin-right: 20px; }
+    
+    h2 {
+      font-size: 14pt;
+      font-weight: 600;
+      color: #0f3460;
+      margin: 28px 0 14px;
+      padding-left: 10px;
+      border-left: 4px solid #e94560;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 10pt;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border: 1px solid #e2e8f0;
+    }
+    
+    th {
+      background: #0f3460;
+      color: white;
+      font-weight: 600;
+    }
+    
+    tr:nth-child(even) { background: #f8fafc; }
+    
+    tr:hover { background: #f1f5f9; }
+    
+    .price { text-align: right; font-weight: 500; }
+    
+    .total-row { background: #0f3460 !important; color: white; font-weight: 700; font-size: 11pt; }
+    
+    .total-row td { border-color: #0f3460; }
+    
+    .sum {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #e94560;
+      margin: 10px 0 20px;
+      text-align: right;
+    }
+    
+    hr {
+      border: none;
+      border-top: 1px dashed #cbd5e1;
+      margin: 24px 0;
+    }
+    
+    ul {
+      margin: 10px 0 10px 20px;
+    }
+    
+    ul li {
+      margin: 6px 0;
+      list-style: none;
+      padding-left: 20px;
+      position: relative;
+    }
+    
+    ul li::before {
+      content: "☐";
+      position: absolute;
+      left: 0;
+      color: #0f3460;
+    }
+    
+    .footer {
+      margin-top: 30px;
+      font-size: 9pt;
+      color: #94a3b8;
+      text-align: right;
+    }
+    
+    .section-intro { margin-bottom: 12px; color: #475569; }
+  </style>
+</head>
+<body>
+  <h1>Техническое задание на создание лендинга «НадоВело»</h1>
+  
+  <div class="meta">
+    <span><strong>Дата:</strong> 11.02.2025</span>
+    <span><strong>Регион:</strong> Саратов</span>
+    <span><strong>Сфера:</strong> Аренда электровелосипедов для курьеров и физ. лиц</span>
+  </div>
+
+  <h2>1. Общие сведения</h2>
+  <table>
+    <tr><th>Параметр</th><th>Значение</th></tr>
+    <tr><td>Формат</td><td>Одностраничный лендинг (Landing Page)</td></tr>
+    <tr><td>Компания</td><td>НадоВело</td></tr>
+    <tr><td>Целевая аудитория</td><td>Курьеры доставки (Яндекс.Еда, ВкусВилл, Кухня на районе и др.)</td></tr>
+  </table>
+
+  <h2>2. Структура лендинга (одна страница)</h2>
+  <table>
+    <tr><th>№</th><th>Блок</th><th>Содержание</th><th class="price">Стоимость (руб.)</th></tr>
+    <tr><td>1</td><td>Шапка</td><td>Логотип, телефон, Саратов, ссылки на якоря</td><td class="price">6 000</td></tr>
+    <tr><td>2</td><td>Hero</td><td>Главный оффер: прокат электровелосипедов для курьеров, CTA</td><td class="price">12 000</td></tr>
+    <tr><td>3</td><td>Проблема — Решение</td><td>Крюк: надёжный велосипед для заработка</td><td class="price">6 000</td></tr>
+    <tr><td>4</td><td>Услуги</td><td>Прокат для курьеров + доп. услуги (выкуп, АКБ, сервис, аксессуары)</td><td class="price">12 000</td></tr>
+    <tr><td>5</td><td>Преимущества (УТП)</td><td>5 пунктов: офис, сервис, качество, цена, легко найти</td><td class="price">10 000</td></tr>
+    <tr><td>6</td><td>Как это работает</td><td>5 шагов: заявка → визит → оформление → оплата → выдача</td><td class="price">12 000</td></tr>
+    <tr><td>7</td><td>Галерея</td><td>Фото и видео велосипедов и офиса</td><td class="price">10 000</td></tr>
+    <tr><td>8</td><td>Отзывы</td><td>Виджеты/скриншоты с Яндекс.Карт и 2ГИС</td><td class="price">10 000</td></tr>
+    <tr><td>9</td><td>Сотрудничество</td><td>Блок «Сотрудничаем со службами доставки»</td><td class="price">5 000</td></tr>
+    <tr><td>10</td><td>О компании</td><td>Молодая компания, один из лидеров в Саратове</td><td class="price">5 000</td></tr>
+    <tr><td>11</td><td>Контакты</td><td>Адрес, телефон, карта, форма заявки</td><td class="price">15 000</td></tr>
+    <tr><td>12</td><td>Подвал</td><td>Ссылки на политику, реквизиты</td><td class="price">5 000</td></tr>
+    <tr class="total-row"><td colspan="3">Итого блоки</td><td class="price">108 000</td></tr>
+  </table>
+
+  <h2>3. Дополнительно</h2>
+  <table>
+    <tr><th>№</th><th>Раздел</th><th>Содержание</th><th class="price">Стоимость (руб.)</th></tr>
+    <tr><td>1</td><td>Обязательные страницы</td><td>Политика конфиденциальности, согласие на обработку данных</td><td class="price">5 000</td></tr>
+    <tr><td>2</td><td>Реквизиты</td><td>Страница с ИП/ООО, ИНН, ОГРН</td><td class="price">2 000</td></tr>
+    <tr><td>3</td><td>Адаптивность</td><td>Корректное отображение на телефонах</td><td class="price">5 000</td></tr>
+    <tr><td>4</td><td>Форма заявки</td><td>Отправка на email и/или Telegram</td><td class="price">3 000</td></tr>
+    <tr><td>5</td><td>Яндекс.Метрика</td><td>Подключение и настройка</td><td class="price">2 000</td></tr>
+    <tr class="total-row"><td colspan="3">Итого доп.</td><td class="price">17 000</td></tr>
+  </table>
+
+  <h2>4. Сводная смета</h2>
+  <table>
+    <tr><th>Раздел</th><th class="price">Сумма (руб.)</th></tr>
+    <tr><td>Блоки лендинга</td><td class="price">108 000</td></tr>
+    <tr><td>Дополнительно</td><td class="price">17 000</td></tr>
+    <tr class="total-row"><td>ИТОГО</td><td class="price">125 000</td></tr>
+  </table>
+  <p class="sum">Цена для клиента: 125 000 ₽</p>
+
+  <h2>5. Что не входит (можно добавить отдельно)</h2>
+  <table>
+    <tr><th>Опция</th><th class="price">Стоимость</th></tr>
+    <tr><td>Админка (редактирование текстов, телефонов)</td><td class="price">+8 000 ₽</td></tr>
+    <tr><td>Хостинг и домен на 1 год</td><td class="price">+3 000 ₽</td></tr>
+    <tr><td>Подготовка текстов политики/соглашения</td><td class="price">+3 000 ₽</td></tr>
+  </table>
+
+  <h2>6. Сроки</h2>
+  <table>
+    <tr><th>Этап</th><th>Срок</th></tr>
+    <tr><td>Прототип и согласование</td><td>2–3 дня</td></tr>
+    <tr><td>Вёрстка и наполнение</td><td>5–7 дней</td></tr>
+    <tr><td>Тестирование, запуск</td><td>1–2 дня</td></tr>
+    <tr class="total-row"><td>Общий срок</td><td>1,5–2 недели</td></tr>
+  </table>
+
+  <h2>7. Что предоставляет заказчик</h2>
+  <ul>
+    <li>Логотип и фирменные цвета</li>
+    <li>Тексты (о компании, реквизиты) или подтверждение, что готовит исполнитель</li>
+    <li>Фото и видео для галереи</li>
+    <li>Список моделей и тарифов (для блока услуг)</li>
+    <li>Реквизиты (ИП/ООО, ИНН, ОГРН)</li>
+  </ul>
+
+  <div class="footer">На основе брифа от 11.02.2025</div>
+</body>
+</html>
