@@ -1372,7 +1372,7 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
     flex-shrink: 0;
   }
 
-  /* До 1400px — бургер, иначе пункты меню налезают друг на друга */
+  /* На десктопе — только бургер + контакты, без inline-меню */
   .nav {
     display: none;
     flex-direction: column;
@@ -1380,6 +1380,8 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
     top: calc(100% + 0.5rem);
     left: var(--space);
     right: var(--space);
+    max-width: 360px;
+    margin-left: auto;
     background: #fff;
     padding: 0.5rem;
     border-radius: var(--radius);
@@ -1387,7 +1389,7 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
     border: 1px solid var(--border);
     max-height: calc(100vh - 5rem);
     overflow-y: auto;
-    z-index: 10;
+    z-index: 210;
   }
 
   .nav.open {
@@ -1411,10 +1413,6 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   .header-actions {
     display: flex;
     flex-shrink: 0;
-  }
-
-  .header-icon-link {
-    display: inline-flex;
   }
 
   .hero-bg { width: 62%; }
@@ -1516,82 +1514,32 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   .header-phone { display: block; }
 }
 
-@media (min-width: 1400px) {
-  .header-inner {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .logo {
-    justify-self: start;
-  }
-
-  .nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    position: static;
-    background: transparent;
-    padding: 0;
-    border: none;
-    box-shadow: none;
-    max-height: none;
-    overflow: visible;
-    min-width: 0;
-    justify-self: center;
-    grid-column: 2;
-  }
-
-  .nav-links {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 0.85rem;
-    min-width: 0;
-  }
-
-  .nav-links a {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.8125rem;
-    padding: 0;
-    border-radius: 0;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .nav-links a:hover,
-  .nav-links a:active {
-    background: transparent;
-    color: #fff;
-  }
-
-  .header.scrolled .nav-links a {
-    color: var(--text-muted);
-  }
-
-  .header.scrolled .nav-links a:hover {
-    color: var(--teal);
-  }
-
-  .nav-extra {
-    display: inline-flex;
-  }
-
+@media (min-width: 1024px) {
   .nav-mobile-cta {
     display: none;
   }
 
-  .header-actions {
+  .header-icon-link {
     display: none;
   }
 
   .header-right {
-    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+
+  .header-right .btn {
+    padding: 0.6rem 1rem;
+    min-height: 40px;
+    font-size: 0.8125rem;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
   }
 }
 
@@ -1617,7 +1565,7 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   border: 2px solid var(--border);
 }
 
-@media (max-width: 1399px) {
+@media (max-width: 1023px) {
   .nav-mobile-cta {
     display: flex;
     flex-direction: column;
@@ -1913,7 +1861,7 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   .calc-layout .calc-result { order: -1; }
 }
 
-@media (min-width: 768px) and (max-width: 1399px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .header-icon-link { display: inline-flex; }
 }
 
