@@ -294,14 +294,18 @@
   });
 
   document.querySelectorAll('.gallery-grid').forEach(function (grid) {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
     grid.classList.add('gallery-grid--hover-scroll');
     var animId = null;
     var velocity = 0;
+    var dragging = false;
+    var dragStartX = 0;
+    var dragStartScroll = 0;
 
     function tick() {
+      if (dragging) {
+        animId = null;
+        return;
+      }
       if (!velocity) {
         animId = null;
         return;
@@ -320,21 +324,55 @@
     }
 
     grid.addEventListener('mousemove', function (e) {
+      if (dragging) return;
       var rect = grid.getBoundingClientRect();
       var x = e.clientX - rect.left;
-      var edge = rect.width * 0.22;
-      if (x < edge) {
-        velocity = -((edge - x) / edge) * 5;
-      } else if (x > rect.width - edge) {
-        velocity = ((x - (rect.width - edge)) / edge) * 5;
-      } else {
+      var center = rect.width / 2;
+      var dead = rect.width * 0.1;
+      var dist = x - center;
+      if (Math.abs(dist) < dead) {
         velocity = 0;
+        return;
       }
-      if (velocity && !animId) animId = requestAnimationFrame(tick);
+      var maxSpeed = 9;
+      velocity = (dist / (center - dead)) * maxSpeed;
+      velocity = Math.max(-maxSpeed, Math.min(maxSpeed, velocity));
+      if (!animId) animId = requestAnimationFrame(tick);
     });
 
     grid.addEventListener('mouseleave', function () {
-      velocity = 0;
+      if (!dragging) velocity = 0;
     });
+
+    grid.addEventListener('mousedown', function (e) {
+      if (e.button !== 0) return;
+      dragging = true;
+      velocity = 0;
+      dragStartX = e.pageX;
+      dragStartScroll = grid.scrollLeft;
+      grid.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mousemove', function (e) {
+      if (!dragging) return;
+      grid.scrollLeft = dragStartScroll - (e.pageX - dragStartX);
+    });
+
+    window.addEventListener('mouseup', function () {
+      if (!dragging) return;
+      dragging = false;
+      grid.classList.remove('is-dragging');
+    });
+
+    grid.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      var maxScroll = grid.scrollWidth - grid.clientWidth;
+      if (maxScroll <= 1) return;
+      var atStart = grid.scrollLeft <= 0;
+      var atEnd = grid.scrollLeft >= maxScroll - 1;
+      if ((e.deltaY > 0 && atEnd) || (e.deltaY < 0 && atStart)) return;
+      e.preventDefault();
+      grid.scrollLeft += e.deltaY;
+    }, { passive: false });
   });
 })();
