@@ -1689,6 +1689,11 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   margin-bottom: 1.25rem;
 }
 
+.contacts-info .social-icon,
+.footer-links .social-icon {
+  color: #fff;
+}
+
 .nav-social {
   display: flex;
   justify-content: center;
