@@ -520,6 +520,7 @@ main { position: relative; z-index: 1; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .stat-label {
@@ -686,24 +687,32 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   width: 100%;
   padding: 0.85rem 1rem;
   border-radius: 14px;
-  border: 2px solid var(--border);
+  border: none;
+  box-shadow: inset 0 0 0 2px var(--border);
   background: #fff;
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: background 0.25s, box-shadow 0.25s, color 0.25s, transform 0.25s;
   color: var(--text-muted);
   text-align: center;
 }
 
-.calc-tab:hover { border-color: var(--teal); color: var(--teal); }
+.calc-tab:hover {
+  box-shadow: inset 0 0 0 2px var(--teal);
+  color: var(--teal);
+}
 
 .calc-tab.active {
   background: var(--gradient);
-  border-color: transparent;
-  color: #fff;
   box-shadow: 0 4px 20px rgba(20, 184, 166, 0.3);
+  color: #fff;
+}
+
+.calc-tab:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
 }
 
 .calc-panel { display: none; }
@@ -1040,14 +1049,39 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
 
 /* Gallery */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
   margin-top: 1.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(20, 184, 166, 0.45) transparent;
+  padding: 0.25rem 0 0.75rem;
+}
+
+.gallery-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.gallery-grid::-webkit-scrollbar-thumb {
+  background: rgba(20, 184, 166, 0.35);
+  border-radius: 999px;
+}
+
+.gallery-grid:hover::-webkit-scrollbar-thumb {
+  background: rgba(20, 184, 166, 0.65);
 }
 
 .gallery-item {
+  flex: 0 0 auto;
+  width: clamp(160px, 42vw, 280px);
   margin: 0;
+  scroll-snap-align: start;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   border: none;
   background: transparent;
@@ -1056,14 +1090,15 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
 
 .gallery-item:hover {
   transform: translateY(-2px);
-  box-shadow: none;
 }
 
 .gallery-item img {
   width: 100%;
+  height: clamp(200px, 52vw, 350px);
   aspect-ratio: 4 / 5;
   object-fit: cover;
   display: block;
+  border-radius: var(--radius-lg);
 }
 
 /* Reviews */
@@ -1372,11 +1407,6 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
 
   .hero-buttons .btn { width: auto; }
 
-  .gallery-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-  }
-
   .calc-tabs {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
@@ -1507,12 +1537,6 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   }
 
   .step-num { font-size: 2rem; margin-bottom: 0.35rem; }
-
-  .gallery-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
-    margin-top: 2rem;
-  }
 
   .compare-card { padding: 2rem; }
 

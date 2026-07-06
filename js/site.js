@@ -292,4 +292,12 @@
     }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
     observer.observe(el);
   });
+
+  document.querySelectorAll('.gallery-grid').forEach(function (grid) {
+    grid.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      e.preventDefault();
+      grid.scrollLeft += e.deltaY;
+    }, { passive: false });
+  });
 })();
