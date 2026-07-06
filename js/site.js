@@ -2,16 +2,18 @@
   'use strict';
 
   var SITE = {
-    phone: '+79001234567',
-    phoneDisplay: '+7 (900) 123-45-67',
+    phone: '+79093408841',
+    phoneDisplay: '+7 (909) 340-88-41',
     telegram: 'https://t.me/nadovelo',
-    address: 'г. Саратов, ул. Чернышевского, 88',
-    mapQuery: 'Саратов, ул. Чернышевского, 88',
+    vk: 'https://vk.com/nadovelosaratov',
+    address: 'г. Саратов, ул. Чапаева, 8/12',
+    mapQuery: 'Саратов, ул. Чапаева, 8/12',
     metrikaId: 0
   };
 
   var header = document.getElementById('header');
   var nav = document.getElementById('site-nav');
+  var backdrop = document.getElementById('nav-backdrop');
   var burger = document.querySelector('.burger');
   var form = document.getElementById('lead-form');
   var commentField = document.getElementById('comment');
@@ -22,7 +24,10 @@
     burger.classList.add('open');
     burger.setAttribute('aria-expanded', 'true');
     burger.setAttribute('aria-label', 'Закрыть меню');
-    document.body.classList.add('menu-open');
+    if (backdrop) {
+      backdrop.removeAttribute('hidden');
+      backdrop.setAttribute('aria-hidden', 'false');
+    }
     trapFocus(nav);
   }
 
@@ -32,7 +37,10 @@
     burger.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
     burger.setAttribute('aria-label', 'Открыть меню');
-    document.body.classList.remove('menu-open');
+    if (backdrop) {
+      backdrop.setAttribute('hidden', '');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
     releaseFocusTrap();
   }
 
@@ -66,9 +74,19 @@
   }
 
   if (burger && nav) {
-    burger.addEventListener('click', function () {
+    burger.addEventListener('click', function (e) {
+      e.stopPropagation();
       if (nav.classList.contains('open')) closeMenu();
       else openMenu();
+    });
+    nav.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+    if (backdrop) {
+      backdrop.addEventListener('click', closeMenu);
+    }
+    document.addEventListener('click', function () {
+      if (nav.classList.contains('open')) closeMenu();
     });
     nav.querySelectorAll('.nav-links a, .nav-mobile-cta a').forEach(function (link) {
       link.addEventListener('click', closeMenu);
