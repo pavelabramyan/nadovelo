@@ -7,14 +7,14 @@
   <meta name="description" content="Аренда и выкуп электровелосипедов для курьеров в Саратове. Калькулятор аренды онлайн. Оформление за 15 минут.">
   <link rel="icon" type="image/jpeg" href="images/logo.jpg">
   <meta property="og:title" content="НадоВело — Прокат электровелосипедов для курьеров">
-  <meta property="og:description" content="Аренда от 500 ₽/сутки. Выкуп в рассрочку. Первый день бесплатно.">
+  <meta property="og:description" content="Аренда от 3 500 ₽/неделя. Выкуп в рассрочку. Первый день бесплатно.">
   <meta property="og:image" content="https://pavelabramyan.github.io/nadovelo/images/photo-05.jpg">
   <meta property="og:url" content="https://pavelabramyan.github.io/nadovelo/">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=24">
+  <link rel="stylesheet" href="css/styles.css?v=25">
 </head>
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -64,7 +64,6 @@
         <a href="#calculators">Калькуляторы</a>
         <a href="#contacts">Контакты</a>
         <a href="#advantages">Преимущества</a>
-        <a href="#compare">Сравнение</a>
         <a href="#models">Модели</a>
         <a href="#reviews">Отзывы</a>
         <a href="#faq">FAQ</a>
@@ -86,18 +85,14 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true">
-        <canvas id="three-canvas"></canvas>
-      </div>
-      <div class="hero-deco hero-deco-1"></div>
-      <div class="hero-deco hero-deco-2"></div>
-      <div class="hero-deco hero-deco-3"></div>
+    <section class="hero hero--photo">
+      <div class="hero-photo-bg" aria-hidden="true" style="background-image:url('images/photo-01.jpg')"></div>
+      <div class="hero-photo-overlay" aria-hidden="true"></div>
       <div class="hero-inner">
         <div class="hero-content">
           <h1>Прокат электровелосипедов для курьеров в Саратове</h1>
           <p>Надёжный транспорт для заработка. Оформление за 15 минут. Аренда, сервис и выкуп — в одном месте.</p>
-          <p class="hero-price">от 500 ₽/сутки</p>
+          <p class="hero-price">от 3 500 ₽/неделя</p>
           <span class="hero-badge">Первый день аренды — бесплатно</span>
           <div class="hero-buttons">
             <a href="#calculators" class="btn btn-primary btn-lg">Рассчитать стоимость</a>
@@ -110,12 +105,6 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.417 15.181l-.397 5.584c.568 0 .814-.244 1.106-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931L23.93 3.821c.321-1.431-.541-2-1.531-1.565L1.315 9.866c-1.453.597-1.435 1.453-.262 1.842l5.094 1.587 11.832-7.453c.558-.339 1.069-.151.649.218"/></svg>
             </a>
             <a href="tel:+79093408841" data-track="phone_hero">+7 (909) 340-88-41</a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="hero-visual-plate">
-            <img src="images/photo-05.jpg" alt="Электровелосипед для курьерской доставки" width="800" height="600" decoding="sync" fetchpriority="high">
-            <p class="hero-photo-caption">Модель из нашего парка — подберём под вашу смену</p>
           </div>
         </div>
       </div>
@@ -137,16 +126,16 @@
             <div class="stat-label">Оформление</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num" data-prefix="от " data-count="500" data-suffix="&nbsp;₽">от 500&nbsp;₽</div>
-            <div class="stat-label">Стоимость в сутки</div>
+            <div class="stat-num" data-prefix="от " data-count="3500" data-suffix="&nbsp;₽">от 3&nbsp;500&nbsp;₽</div>
+            <div class="stat-label">Стоимость в неделю</div>
           </div>
           <div class="stat-item">
             <div class="stat-num stat-text">Бесплатно</div>
             <div class="stat-label">Первый день</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num" data-count="24" data-suffix="/7">24/7</div>
-            <div class="stat-label">Поддержка</div>
+            <div class="stat-num">9–18</div>
+            <div class="stat-label">Часы работы</div>
           </div>
         </div>
       </div>
@@ -173,30 +162,6 @@
       </div>
     </section>
 
-    <section class="compare section-alt" id="compare">
-      <div class="container">
-        <p class="section-label">Сравнение</p>
-        <h2>Без НадоВело vs С НадоВело</h2>
-        <div class="compare-grid stagger-reveal">
-          <div class="compare-card before">
-            <h3>Без НадоВело</h3>
-            <ul>
-              <li>Поломки — долгое ожидание ремонта</li>
-              <li>Свой велосипед — траты на обслуживание</li>
-              <li>Сложно найти сервис для электровело</li>
-            </ul>
-          </div>
-          <div class="compare-card after">
-            <h3>С НадоВело</h3>
-            <ul>
-              <li>Свой сервис — ремонт без ожидания</li>
-              <li>Аренда — без трат на ТО и запчасти</li>
-              <li>Всё в одном месте: прокат, сервис, выкуп</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="models" id="models">
       <div class="container">
@@ -206,11 +171,11 @@
           <article class="model-card">
             <img src="images/photo-03.jpg" alt="Стандарт — 1 АКБ" loading="lazy">
             <div class="model-body">
-              <h3>Стандарт</h3>
+              <h3>Стандарт · 1 АКБ</h3>
               <ul>
                 <li>1 АКБ 28.6 Ah</li>
                 <li>до 8–10 ч смены</li>
-                <li>от 500 ₽/сутки</li>
+                <li>3 500 ₽/неделя (~500 ₽/сутки)</li>
               </ul>
             </div>
           </article>
@@ -218,22 +183,22 @@
             <span class="tariff-badge">Хит</span>
             <img src="images/photo-06.jpg" alt="Про — 2 АКБ" loading="lazy" class="pos-right">
             <div class="model-body">
-              <h3>Про</h3>
+              <h3>Про · 2 АКБ</h3>
               <ul>
                 <li>2 АКБ по 21 Ah</li>
                 <li>до 10–12 ч смены</li>
-                <li>от 600 ₽/сутки</li>
+                <li>4 200 ₽/неделя (~600 ₽/сутки)</li>
               </ul>
             </div>
           </article>
           <article class="model-card">
-            <img src="images/photo-12.jpg" alt="Месячный тариф" loading="lazy" class="pos-left">
+            <img src="images/photo-12.jpg" alt="Выкуп Monster" loading="lazy" class="pos-left">
             <div class="model-body">
-              <h3>Месячный</h3>
+              <h3>Выкуп</h3>
               <ul>
-                <li>Выгодно при длительной аренде</li>
-                <li>Возможность выкупа</li>
-                <li>12 000 ₽/мес.</li>
+                <li>Monster CROSS и PRO</li>
+                <li>Рассрочка 2 / 4 / 6 мес.</li>
+                <li>Без кредитной истории</li>
               </ul>
             </div>
           </article>
@@ -247,8 +212,9 @@
         <h2>Выберите удобный тариф</h2>
         <div class="tariffs-grid stagger-reveal">
           <div class="tariff-card">
-            <div class="tariff-price">500 ₽</div>
-            <div class="tariff-period">в сутки · Стандарт</div>
+            <div class="tariff-price">3 500 ₽</div>
+            <div class="tariff-period">в неделю · 1 АКБ</div>
+            <p class="tariff-day">~500 ₽/сутки</p>
             <ul class="tariff-features">
               <li>1 АКБ 28.6 Ah</li>
               <li>до 8–10 часов работы</li>
@@ -259,8 +225,9 @@
           </div>
           <div class="tariff-card featured">
             <span class="tariff-badge">Хит</span>
-            <div class="tariff-price">600 ₽</div>
-            <div class="tariff-period">в сутки · Про</div>
+            <div class="tariff-price">4 200 ₽</div>
+            <div class="tariff-period">в неделю · 2 АКБ</div>
+            <p class="tariff-day">~600 ₽/сутки</p>
             <ul class="tariff-features">
               <li>2 АКБ по 21 Ah</li>
               <li>до 10–12 часов работы</li>
@@ -270,13 +237,13 @@
             <a href="#calculators" class="btn btn-primary btn-block">Рассчитать</a>
           </div>
           <div class="tariff-card">
-            <div class="tariff-price">12 000 ₽</div>
-            <div class="tariff-period">в месяц · Эконом</div>
+            <div class="tariff-price">от 17 000 ₽</div>
+            <div class="tariff-period">в месяц · выкуп</div>
             <ul class="tariff-features">
-              <li>Выгодно при длительной аренде</li>
-              <li>Возможность выкупа</li>
-              <li>Скидка от суточного тарифа</li>
-              <li>Залог от 5 000 ₽</li>
+              <li>Monster CROSS и PRO</li>
+              <li>Срок 2 / 4 / 6 месяцев</li>
+              <li>Фиксированные платежи</li>
+              <li>Без кредитной истории</li>
             </ul>
             <a href="#calculators" class="btn btn-dark btn-block" data-calc-tab="buyout">Калькулятор выкупа</a>
           </div>
@@ -303,34 +270,15 @@
             <div class="calc-form">
               <h3>Рассчитать аренду</h3>
               <div class="calc-field">
-                <label for="rent-model">Модель</label>
+                <label for="rent-model">Тариф</label>
                 <select id="rent-model">
-                  <option value="standard">Стандарт — 500 ₽/сутки (1 АКБ)</option>
-                  <option value="pro">Про — 600 ₽/сутки (2 АКБ)</option>
-                  <option value="monthly">Месячный — 12 000 ₽/мес.</option>
+                  <option value="standard">1 АКБ — 3 500 ₽/неделя</option>
+                  <option value="pro">2 АКБ — 4 200 ₽/неделя</option>
                 </select>
               </div>
               <div class="calc-field">
-                <span class="field-label" id="rent-period-label">Период аренды</span>
-                <div class="calc-toggle-group" id="rent-period-group" role="group" aria-labelledby="rent-period-label">
-                  <button type="button" class="calc-toggle active" data-value="days">Дни</button>
-                  <button type="button" class="calc-toggle" data-value="weeks">Недели</button>
-                  <button type="button" class="calc-toggle" data-value="months">Месяцы</button>
-                </div>
-              </div>
-              <div class="calc-field">
-                <label for="rent-period">Срок <span class="value-display" id="rent-period-val">7 дней</span></label>
-                <input type="range" class="calc-range" id="rent-period" min="1" max="90" value="7" aria-valuetext="7 дней">
-              </div>
-              <div class="calc-field calc-field-compact">
-                <label class="calc-checkbox" for="rent-extra-battery">
-                  <input type="checkbox" id="rent-extra-battery">
-                  Доп. АКБ (+150 ₽/сутки)
-                </label>
-                <label class="calc-checkbox" for="rent-insurance">
-                  <input type="checkbox" id="rent-insurance">
-                  Страховка (+50 ₽/сутки)
-                </label>
+                <label for="rent-period">Срок <span class="value-display" id="rent-period-val">1 нед.</span></label>
+                <input type="range" class="calc-range" id="rent-period" min="1" max="12" value="1" aria-valuetext="1 неделя">
               </div>
               <div class="calc-field">
                 <label for="rent-orders">Заказов в день <span class="value-display" id="rent-orders-val">15</span></label>
@@ -342,9 +290,9 @@
               <div class="calc-big-number" id="rent-total">3 500 ₽</div>
               <div class="calc-big-label">стоимость аренды без залога</div>
               <div class="calc-breakdown">
-                <div class="calc-row"><span class="label">В сутки</span><span class="val" id="rent-per-day">500 ₽</span></div>
                 <div class="calc-row"><span class="label">В неделю</span><span class="val" id="rent-per-week">3 500 ₽</span></div>
-                <div class="calc-row"><span class="label">Первый платёж</span><span class="val" id="rent-first-pay">3 500 ₽</span></div>
+                <div class="calc-row"><span class="label">В сутки</span><span class="val" id="rent-per-day">500 ₽</span></div>
+                <div class="calc-row"><span class="label">Первый платёж</span><span class="val" id="rent-first-pay">6 500 ₽</span></div>
                 <div class="calc-row"><span class="label">Залог (возвратный)</span><span class="val" id="rent-deposit-val">3 000 ₽</span></div>
               </div>
               <div class="calc-chart">
@@ -368,50 +316,30 @@
               <div class="calc-field">
                 <label for="buyout-model">Модель</label>
                 <select id="buyout-model">
-                  <option value="standard">Стандарт — 55 000 ₽</option>
-                  <option value="pro">Про (2 АКБ) — 72 000 ₽</option>
-                  <option value="premium">Премиум — 89 000 ₽</option>
+                  <option value="cross">Monster CROSS — 85 000 ₽</option>
+                  <option value="pro">Monster PRO</option>
                 </select>
               </div>
               <div class="calc-field">
-                <label for="buyout-retail">Розничная цена <span class="value-display" id="buyout-retail-val">55 000 ₽</span></label>
-                <input type="range" class="calc-range" id="buyout-retail" min="35000" max="95000" step="1000" value="55000">
-              </div>
-              <div class="calc-field">
-                <label for="buyout-down">Первый взнос <span class="value-display" id="buyout-down-val">8 000 ₽</span></label>
-                <input type="range" class="calc-range" id="buyout-down" min="0" max="27500" step="500" value="8000">
-              </div>
-              <div class="calc-field">
-                <label for="buyout-term">Срок выкупа <span class="value-display" id="buyout-term-val">6 мес.</span></label>
-                <input type="range" class="calc-range" id="buyout-term" min="3" max="12" step="1" value="6">
-              </div>
-              <div class="calc-field">
-                <span class="field-label" id="buyout-freq-label">График платежей</span>
-                <div class="calc-toggle-group" id="buyout-freq-group" role="group" aria-labelledby="buyout-freq-label">
-                  <button type="button" class="calc-toggle active" data-value="week">Еженедельно</button>
-                  <button type="button" class="calc-toggle" data-value="month">Ежемесячно</button>
+                <span class="field-label" id="buyout-term-label">Срок выкупа</span>
+                <div class="calc-toggle-group" id="buyout-term-group" role="group" aria-labelledby="buyout-term-label">
+                  <button type="button" class="calc-toggle active" data-value="2">2 мес.</button>
+                  <button type="button" class="calc-toggle" data-value="4">4 мес.</button>
+                  <button type="button" class="calc-toggle" data-value="6">6 мес.</button>
                 </div>
               </div>
+              <p class="calc-hint" id="buyout-retail-hint">Розничная цена Monster CROSS — 85 000 ₽</p>
             </div>
             <div class="calc-result">
               <h3>Платёж</h3>
-              <div class="calc-big-number" id="buyout-payment">3 000 ₽</div>
-              <div class="calc-big-label" id="buyout-payment-label">в неделю</div>
-              <div class="calc-breakdown" id="buyout-schedule"></div>
+              <div class="calc-big-number" id="buyout-payment">45 500 ₽</div>
+              <div class="calc-big-label" id="buyout-payment-label">в месяц</div>
               <div class="calc-breakdown">
-                <div class="calc-row"><span class="label">Итого к оплате</span><span class="val" id="buyout-total">59 400 ₽</span></div>
-                <div class="calc-row"><span class="label">Переплата к рознице</span><span class="val" id="buyout-overpay">+4 400 ₽</span></div>
+                <div class="calc-row"><span class="label">Срок</span><span class="val" id="buyout-term-val">2 мес.</span></div>
+                <div class="calc-row"><span class="label">Итого к оплате</span><span class="val" id="buyout-total">91 000 ₽</span></div>
+                <div class="calc-row"><span class="label">Переплата к рознице</span><span class="val" id="buyout-overpay">+6 000 ₽</span></div>
               </div>
-              <span class="calc-compare-badge good" id="buyout-overpay-badge">Выгоднее чистой аренды</span>
-              <p class="calc-note" id="buyout-compare-rent"></p>
-              <p class="calc-disclaimer-block">Расчёт ориентировочный. Точные условия и переплата — у менеджера при оформлении.</p>
-              <div class="calc-chart">
-                <div class="calc-chart-bar" id="buyout-breakdown-bar"></div>
-                <div class="calc-chart-legend">
-                  <span class="l-deposit">Первый взнос</span>
-                  <span class="l-rent">Рассрочка</span>
-                </div>
-              </div>
+              <p class="calc-disclaimer-block">Цены по прайсу. Точные условия — у менеджера при оформлении.</p>
               <div class="calc-tip" id="buyout-tip"></div>
               <a href="#form" class="btn btn-primary btn-block calc-cta">Оформить выкуп</a>
             </div>
@@ -528,18 +456,6 @@
       </div>
     </section>
 
-    <section class="partners">
-      <div class="container text-center">
-        <p class="section-label">Сотрудничество</p>
-        <h2>Сотрудничаем со службами доставки</h2>
-        <div class="partner-logos">
-          <span class="partner-badge">Яндекс.Еда</span>
-          <span class="partner-badge">ВкусВилл</span>
-          <span class="partner-badge">Кухня на районе</span>
-          <span class="partner-badge">Самокат</span>
-        </div>
-      </div>
-    </section>
 
     <section class="about section-alt">
       <div class="container container-narrow">
@@ -560,7 +476,7 @@
           </div>
           <div class="faq-item">
             <button type="button" class="faq-question" aria-expanded="false">Можно ли выкупить электровелосипед?</button>
-            <div class="faq-answer" hidden><div class="faq-answer-inner">Да, на специальных условиях. Используйте калькулятор выкупа выше или уточните при оформлении. Срок — от 3 до 12 месяцев.</div></div>
+            <div class="faq-answer" hidden><div class="faq-answer-inner">Да. Monster CROSS и PRO — рассрочка на 2, 4 или 6 месяцев. Используйте калькулятор выкупа или уточните при оформлении.</div></div>
           </div>
           <div class="faq-item">
             <button type="button" class="faq-question" aria-expanded="false">Есть ли доставка велосипеда?</button>
@@ -583,6 +499,7 @@
             <div class="contacts-info">
               <p><strong>Адрес:</strong><br>г. Саратов, ул. Чапаева, 8/12</p>
               <p><strong>Телефон:</strong><br><a href="tel:+79093408841" data-track="phone_contacts">+7 (909) 340-88-41</a></p>
+              <p><strong>Время работы:</strong><br>пн–пт 9:00–18:00, обед 13:00–14:00<br>выходные — по предварительной заявке</p>
               <p><strong>Соцсети:</strong></p>
               <div class="contacts-social">
                 <a href="https://vk.com/nadovelosaratov" target="_blank" rel="noopener" class="social-icon social-icon--vk social-icon--lg" aria-label="ВКонтакте" data-track="vk_contacts">
@@ -672,11 +589,7 @@
     </a>
   </div>
 
-  <script type="importmap">
-  {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}
-  </script>
-  <script type="module" src="js/three-scene.js?v=20"></script>
-  <script src="js/site.js?v=22"></script>
-  <script src="js/calculators.js?v=20"></script>
+  <script src="js/site.js?v=23"></script>
+  <script src="js/calculators.js?v=25"></script>
 </body>
 </html>

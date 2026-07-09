@@ -374,6 +374,98 @@ a { color: inherit; text-decoration: none; transition: color 0.2s, opacity 0.2s;
   transform: translateY(-2px);
 }
 
+
+.hero--photo {
+  min-height: min(78vh, 640px);
+  background: #0f172a;
+  display: flex;
+  align-items: center;
+}
+
+.hero-photo-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(120deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.45) 55%, rgba(15, 23, 42, 0.35) 100%),
+    linear-gradient(0deg, rgba(15, 23, 42, 0.55) 0%, transparent 45%);
+}
+
+.hero--photo .hero-inner {
+  position: relative;
+  z-index: 2;
+  grid-template-columns: 1fr;
+  max-width: 720px;
+}
+
+.hero--photo .hero-content {
+  text-align: left;
+}
+
+.hero--photo .hero-content > p {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 520px;
+}
+
+.hero--photo .hero-buttons {
+  align-items: flex-start;
+}
+
+.hero--photo .hero-buttons .btn {
+  width: auto;
+}
+
+.hero--photo .hero-secondary-links {
+  justify-content: flex-start;
+}
+
+.tariff-day {
+  margin: -0.35rem 0 0.85rem;
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.calc-hint {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.problem-solution,
+.advantages,
+.models,
+.tariffs,
+.calc-section,
+.services,
+.how-it-works,
+.gallery,
+.reviews,
+.about,
+.faq,
+.contacts {
+  padding-top: calc(var(--space-lg) * 0.85);
+  padding-bottom: calc(var(--space-lg) * 0.85);
+}
+
+.stats-section {
+  padding: 1.25rem 0;
+}
+
+.cta-banner {
+  padding: 1.5rem 0;
+}
+
 /* Hero — mobile first */
 .hero {
   position: relative;
@@ -1500,7 +1592,7 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
 @media (min-width: 1024px) {
   :root {
     --space: 1.5rem;
-    --space-lg: 5rem;
+    --space-lg: 3.5rem;
   }
 
   .header {
@@ -2067,4 +2159,17 @@ h2 { font-size: clamp(1.45rem, 5vw, 2.5rem); }
   }
   .fade-in,
   .stagger-reveal > * { opacity: 1; transform: none; }
+}
+
+
+@media (min-width: 1024px) {
+  .hero--photo {
+    min-height: min(72vh, 680px);
+  }
+  .hero--photo .hero-inner {
+    grid-template-columns: 1fr;
+  }
+  .hero--photo .hero-content {
+    text-align: left;
+  }
 }

@@ -5,15 +5,29 @@
   const fmtShort = (n) => Math.round(n).toLocaleString('ru-RU');
 
   const MODELS = {
-    standard: { name: 'Стандарт', daily: 500, batteries: 1, deposit: 3000, hours: '8–10' },
-    pro: { name: 'Про (2 АКБ)', daily: 600, batteries: 2, deposit: 3000, hours: '10–12' },
-    monthly: { name: 'Месячный', daily: 400, monthly: 12000, batteries: 1, deposit: 5000, hours: '10–12' }
+    standard: { name: '1 АКБ', weekly: 3500, batteries: 1, deposit: 3000, hours: '8–10' },
+    pro: { name: '2 АКБ', weekly: 4200, batteries: 2, deposit: 3000, hours: '10–12' }
   };
 
   const BUYOUT_MODELS = {
-    standard: { name: 'Стандарт', retail: 55000 },
-    pro: { name: 'Про (2 АКБ)', retail: 72000 },
-    premium: { name: 'Премиум', retail: 89000 }
+    cross: {
+      name: 'Monster CROSS',
+      retail: 85000,
+      plans: {
+        2: { payment: 45500, total: 91000 },
+        4: { payment: 25000, total: 100000 },
+        6: { payment: 17000, total: 102000 }
+      }
+    },
+    pro: {
+      name: 'Monster PRO',
+      retail: null,
+      plans: {
+        2: { payment: 50500, total: 101000 },
+        4: { payment: 27500, total: 110000 },
+        6: { payment: 19000, total: 114000 }
+      }
+    }
   };
 
   const tabs = document.querySelectorAll('.calc-tab');
@@ -53,11 +67,8 @@
 
   const rentEls = {
     model: document.getElementById('rent-model'),
-    periodType: () => document.querySelector('#rent-period-group .calc-toggle.active')?.dataset.value || 'days',
     period: document.getElementById('rent-period'),
     periodDisplay: document.getElementById('rent-period-val'),
-    extraBattery: document.getElementById('rent-extra-battery'),
-    insurance: document.getElementById('rent-insurance'),
     total: document.getElementById('rent-total'),
     perDay: document.getElementById('rent-per-day'),
     perWeek: document.getElementById('rent-per-week'),
@@ -70,56 +81,37 @@
     ordersDisplay: document.getElementById('rent-orders-val')
   };
 
-  function getRentDays() {
-    const val = parseInt(rentEls.period.value, 10);
-    const type = rentEls.periodType();
-    if (type === 'weeks') return val * 7;
-    if (type === 'months') return val * 30;
-    return val;
-  }
-
-  function updateRentPeriodLabel() {
-    const type = rentEls.periodType();
-    const labels = { days: 'дней', weeks: 'нед.', months: 'мес.' };
-    rentEls.periodDisplay.textContent = rentEls.period.value + ' ' + labels[type];
-    const max = type === 'days' ? 90 : type === 'weeks' ? 12 : 6;
-    rentEls.period.max = max;
-    if (parseInt(rentEls.period.value, 10) > max) rentEls.period.value = max;
+  function weeksLabel(n) {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return n + ' нед.';
+    return n + ' нед.';
   }
 
   function syncFormFromRent() {
     if (!window.NadoVeloSite || !rentEls.model) return;
     if (!document.getElementById('calc-rent')?.classList.contains('active')) return;
     const model = MODELS[rentEls.model.value];
-    const days = getRentDays();
     const text = 'Аренда: ' + model.name + ', ' + rentEls.periodDisplay.textContent + ', итого ' + rentEls.total.textContent;
     window.NadoVeloSite.updateFormComment(text);
   }
 
   function updateRentCalc() {
     if (!rentEls.model) return;
-    updateRentPeriodLabel();
 
-    const modelKey = rentEls.model.value;
-    const model = MODELS[modelKey];
-    const days = getRentDays();
-
-    let dailyRate = model.daily;
-    if (rentEls.periodType() === 'months' && model.monthly) {
-      dailyRate = model.monthly / 30;
-    }
-
-    const extraBatteryCost = rentEls.extraBattery.checked ? 150 : 0;
-    const insuranceCost = rentEls.insurance.checked ? 50 : 0;
-    const effectiveDaily = dailyRate + extraBatteryCost + insuranceCost;
-
-    const rentTotal = effectiveDaily * days;
+    const model = MODELS[rentEls.model.value];
+    const weeks = parseInt(rentEls.period.value, 10) || 1;
+    const weekly = model.weekly;
+    const daily = weekly / 7;
+    const rentTotal = weekly * weeks;
     const deposit = model.deposit;
-    const firstPayment = effectiveDaily + deposit;
+    const firstPayment = weekly + deposit;
 
+    rentEls.periodDisplay.textContent = weeksLabel(weeks);
+    rentEls.period.setAttribute('aria-valuetext', weeksLabel(weeks));
     rentEls.total.textContent = fmt(rentTotal);
-    rentEls.perDay.textContent = fmt(effectiveDaily);
-    rentEls.perWeek.textContent = fmt(effectiveDaily * 7);
+    rentEls.perWeek.textContent = fmt(weekly);
+    rentEls.perDay.textContent = fmt(daily);
     rentEls.firstPay.textContent = fmt(firstPayment);
     rentEls.deposit.textContent = fmt(deposit);
 
@@ -133,8 +125,8 @@
     const ordersPerDay = parseInt(rentEls.orders.value, 10);
     const avgOrderPay = 180;
     const dailyEarnings = ordersPerDay * avgOrderPay;
-    const netDaily = dailyEarnings - effectiveDaily;
-    const netTotal = netDaily * days;
+    const netDaily = dailyEarnings - daily;
+    const netTotal = netDaily * weeks * 7;
 
     rentEls.ordersDisplay.textContent = ordersPerDay;
     if (netDaily > 0) {
@@ -146,9 +138,9 @@
         '<span class="calc-disclaimer">Примерная оценка.</span> Увеличьте количество заказов — при текущем тарифе расходы превышают доход';
     }
 
-    const weekDisc = days >= 7 ? ' Скидка 5% при аренде от 7 дней — уточняйте у менеджера.' : '';
     rentEls.tip.textContent =
-      model.name + ': ' + model.batteries + ' АКБ, до ' + model.hours + ' ч работы. Первый день бесплатно для новых клиентов.' + weekDisc;
+      model.name + ': до ' + model.hours + ' ч работы. Недельный тариф ' + fmt(weekly) +
+      ' (~' + fmt(daily) + '/сутки). Первый день бесплатно для новых клиентов.';
 
     syncFormFromRent();
   }
@@ -157,120 +149,63 @@
     ['change', 'input'].forEach((ev) => {
       rentEls.model.addEventListener(ev, updateRentCalc);
       rentEls.period.addEventListener(ev, updateRentCalc);
-      rentEls.extraBattery.addEventListener(ev, updateRentCalc);
-      rentEls.insurance.addEventListener(ev, updateRentCalc);
       rentEls.orders.addEventListener(ev, updateRentCalc);
     });
-    document.getElementById('rent-period-group')?.addEventListener('click', () => setTimeout(updateRentCalc, 0));
     updateRentCalc();
   }
 
   const buyEls = {
     model: document.getElementById('buyout-model'),
-    retail: document.getElementById('buyout-retail'),
-    retailDisplay: document.getElementById('buyout-retail-val'),
-    down: document.getElementById('buyout-down'),
-    downDisplay: document.getElementById('buyout-down-val'),
-    term: document.getElementById('buyout-term'),
-    termDisplay: document.getElementById('buyout-term-val'),
-    freq: () => document.querySelector('#buyout-freq-group .calc-toggle.active')?.dataset.value || 'week',
+    term: () => document.querySelector('#buyout-term-group .calc-toggle.active')?.dataset.value || '2',
+    termVal: document.getElementById('buyout-term-val'),
+    retailHint: document.getElementById('buyout-retail-hint'),
     payment: document.getElementById('buyout-payment'),
     paymentLabel: document.getElementById('buyout-payment-label'),
     total: document.getElementById('buyout-total'),
     overpay: document.getElementById('buyout-overpay'),
-    overpayBadge: document.getElementById('buyout-overpay-badge'),
-    compareRent: document.getElementById('buyout-compare-rent'),
-    breakdown: document.getElementById('buyout-breakdown-bar'),
-    tip: document.getElementById('buyout-tip'),
-    schedule: document.getElementById('buyout-schedule')
+    tip: document.getElementById('buyout-tip')
   };
 
   function syncFormFromBuyout() {
     if (!window.NadoVeloSite || !buyEls.model) return;
     if (!document.getElementById('calc-buyout')?.classList.contains('active')) return;
     const model = BUYOUT_MODELS[buyEls.model.value];
-    const text = 'Выкуп: ' + model.name + ', платёж ' + buyEls.payment.textContent + ' ' + buyEls.paymentLabel.textContent;
+    const text = 'Выкуп: ' + model.name + ', ' + buyEls.term() + ' мес., платёж ' + buyEls.payment.textContent + '/мес.';
     window.NadoVeloSite.updateFormComment(text);
   }
 
   function updateBuyoutCalc() {
     if (!buyEls.model) return;
 
-    const modelKey = buyEls.model.value;
-    const model = BUYOUT_MODELS[modelKey];
-    const retail = parseInt(buyEls.retail.value, 10);
-    const down = parseInt(buyEls.down.value, 10);
-    const termMonths = parseInt(buyEls.term.value, 10);
-    const isWeekly = buyEls.freq() === 'week';
+    const model = BUYOUT_MODELS[buyEls.model.value];
+    const months = buyEls.term();
+    const plan = model.plans[months];
+    if (!plan) return;
 
-    buyEls.retailDisplay.textContent = fmtShort(retail) + ' ₽';
-    buyEls.downDisplay.textContent = fmtShort(down) + ' ₽';
-    buyEls.termDisplay.textContent = termMonths + ' мес.';
+    buyEls.termVal.textContent = months + ' мес.';
+    buyEls.payment.textContent = fmt(plan.payment);
+    buyEls.paymentLabel.textContent = 'в месяц';
+    buyEls.total.textContent = fmt(plan.total);
 
-    const remaining = Math.max(retail - down, 0);
-    const periods = isWeekly ? termMonths * 4 : termMonths;
-    const markup = 1.08;
-    const totalWithMarkup = remaining * markup;
-    const payment = periods > 0 ? totalWithMarkup / periods : 0;
-    const grandTotal = down + totalWithMarkup;
-    const overpay = grandTotal - retail;
-    const overpayPct = retail > 0 ? ((overpay / retail) * 100).toFixed(1) : 0;
-
-    buyEls.payment.textContent = fmt(payment);
-    buyEls.paymentLabel.textContent = isWeekly ? 'в неделю' : 'в месяц';
-    buyEls.total.textContent = fmt(grandTotal);
-    buyEls.overpay.textContent = (overpay >= 0 ? '+' : '') + fmt(overpay) + ' (' + overpayPct + '%)';
-
-    if (overpay <= retail * 0.1) {
-      buyEls.overpayBadge.className = 'calc-compare-badge good';
-      buyEls.overpayBadge.textContent = 'Выгоднее чистой аренды';
+    if (model.retail != null) {
+      const overpay = plan.total - model.retail;
+      buyEls.overpay.textContent = (overpay >= 0 ? '+' : '') + fmt(overpay);
+      buyEls.retailHint.textContent = 'Розничная цена ' + model.name + ' — ' + fmtShort(model.retail) + ' ₽';
     } else {
-      buyEls.overpayBadge.className = 'calc-compare-badge neutral';
-      buyEls.overpayBadge.textContent = 'Сопоставимо с долгой арендой';
+      buyEls.overpay.textContent = '—';
+      buyEls.retailHint.textContent = model.name + ' — цена в рассрочку по прайсу';
     }
 
-    const rentDaily = MODELS.pro.daily;
-    const rentCost = rentDaily * termMonths * 30;
-    const savings = rentCost - grandTotal;
-    buyEls.compareRent.textContent =
-      savings > 0
-        ? 'Экономия ' + fmt(savings) + ' vs аренда ' + termMonths + ' мес. (' + fmt(rentCost) + ')'
-        : 'Аренда на ' + termMonths + ' мес. обойдётся в ' + fmt(rentCost);
-
-    const downPct = grandTotal > 0 ? (down / grandTotal) * 100 : 0;
-    const payPct = grandTotal > 0 ? (totalWithMarkup / grandTotal) * 100 : 0;
-    buyEls.breakdown.innerHTML =
-      '<div class="calc-chart-segment deposit" style="width:' + downPct + '%"></div>' +
-      '<div class="calc-chart-segment rent" style="width:' + payPct + '%"></div>';
-
-    buyEls.schedule.innerHTML =
-      '<div class="calc-row"><span class="label">Сегодня</span><span class="val">' + fmt(down + payment) + '</span></div>' +
-      '<div class="calc-row"><span class="label">Далее × ' + (periods - 1) + '</span><span class="val">' + fmt(payment) + '</span></div>' +
-      '<div class="calc-row"><span class="label">Велосипед ваш</span><span class="val">через ' + termMonths + ' мес.</span></div>';
-
     buyEls.tip.textContent =
-      model.name + ' — розница ' + fmt(model.retail) + '. Расчёт ориентировочный, точные условия уточняйте у менеджера. Без кредитной истории.';
+      model.name + ': ' + months + ' платежа по ' + fmt(plan.payment) +
+      ', итого ' + fmt(plan.total) + '. Без кредитной истории.';
 
     syncFormFromBuyout();
   }
 
   if (buyEls.model) {
-    buyEls.model.addEventListener('change', () => {
-      const m = BUYOUT_MODELS[buyEls.model.value];
-      buyEls.retail.value = m.retail;
-      buyEls.down.max = Math.floor(m.retail * 0.5);
-      if (parseInt(buyEls.down.value, 10) > buyEls.down.max) {
-        buyEls.down.value = Math.floor(m.retail * 0.15);
-      }
-      updateBuyoutCalc();
-    });
-
-    ['input', 'change'].forEach((ev) => {
-      buyEls.retail.addEventListener(ev, updateBuyoutCalc);
-      buyEls.down.addEventListener(ev, updateBuyoutCalc);
-      buyEls.term.addEventListener(ev, updateBuyoutCalc);
-    });
-    document.getElementById('buyout-freq-group')?.addEventListener('click', () => setTimeout(updateBuyoutCalc, 0));
+    buyEls.model.addEventListener('change', updateBuyoutCalc);
+    document.getElementById('buyout-term-group')?.addEventListener('click', () => setTimeout(updateBuyoutCalc, 0));
     updateBuyoutCalc();
   }
 
@@ -284,7 +219,7 @@
       el.textContent = prefix + target + suffix;
       return;
     }
-    el.textContent = prefix + target + suffix;
+    el.textContent = prefix + (num >= 1000 ? Math.round(num).toLocaleString('ru-RU') : target) + suffix;
     el.classList.add('counted');
   });
 
