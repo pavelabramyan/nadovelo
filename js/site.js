@@ -195,7 +195,7 @@
       e.preventDefault();
       var name = form.name.value.trim();
       var phone = form.phone.value.trim();
-      var comment = form.comment.value.trim();
+      var comment = (form.comment && form.comment.value || '').trim();
       if (!name || phone.replace(/\D/g, '').length < 11) return;
 
       trackGoal('lead_submit');
