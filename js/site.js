@@ -172,6 +172,7 @@
   if (phoneInput) {
     phoneInput.addEventListener('input', function () {
       phoneInput.value = formatPhone(phoneInput.value);
+      phoneInput.setCustomValidity('');
     });
     phoneInput.addEventListener('focus', function () {
       if (!phoneInput.value) phoneInput.value = '+7 (';
@@ -196,7 +197,12 @@
       var name = form.name.value.trim();
       var phone = form.phone.value.trim();
       var comment = (form.comment && form.comment.value || '').trim();
-      if (!name || phone.replace(/\D/g, '').length < 11) return;
+      var phoneIsValid = phone.replace(/\D/g, '').length === 11;
+      form.phone.setCustomValidity(phoneIsValid ? '' : 'Введите телефон полностью');
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
 
       trackGoal('lead_submit');
       var message = buildLeadMessage({ name: name, phone: phone, comment: comment });
@@ -375,4 +381,71 @@
       grid.scrollLeft += e.deltaY;
     }, { passive: false });
   });
+
+  var premiumHero = document.querySelector('[data-three-hero]');
+  var premiumHeroCard = premiumHero && premiumHero.querySelector('.hero-product-card');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (premiumHero && premiumHeroCard && finePointer && !reduceMotion) {
+    var parallaxFrame = null;
+    var parallaxCurrent = { x: 0, y: 0 };
+    var parallaxTarget = { x: 0, y: 0 };
+
+    function renderHeroParallax() {
+      parallaxCurrent.x += (parallaxTarget.x - parallaxCurrent.x) * 0.09;
+      parallaxCurrent.y += (parallaxTarget.y - parallaxCurrent.y) * 0.09;
+      premiumHeroCard.style.setProperty('--tilt-x', (parallaxCurrent.x * 3.6).toFixed(2) + 'deg');
+      premiumHeroCard.style.setProperty('--tilt-y', (parallaxCurrent.y * -3).toFixed(2) + 'deg');
+      premiumHeroCard.style.setProperty('--shift-x', (parallaxCurrent.x * 5).toFixed(2) + 'px');
+      premiumHeroCard.style.setProperty('--shift-y', (parallaxCurrent.y * 4).toFixed(2) + 'px');
+
+      if (Math.abs(parallaxTarget.x - parallaxCurrent.x) > 0.002
+        || Math.abs(parallaxTarget.y - parallaxCurrent.y) > 0.002) {
+        parallaxFrame = requestAnimationFrame(renderHeroParallax);
+      } else {
+        parallaxFrame = null;
+      }
+    }
+
+    function requestHeroParallax() {
+      if (!parallaxFrame) parallaxFrame = requestAnimationFrame(renderHeroParallax);
+    }
+
+    premiumHero.addEventListener('pointermove', function (event) {
+      var rect = premiumHero.getBoundingClientRect();
+      parallaxTarget.x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      parallaxTarget.y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+      requestHeroParallax();
+    }, { passive: true });
+
+    premiumHero.addEventListener('pointerleave', function () {
+      parallaxTarget.x = 0;
+      parallaxTarget.y = 0;
+      requestHeroParallax();
+    }, { passive: true });
+  }
+
+  if (document.body.classList.contains('premium-site') && !reduceMotion) {
+    var premiumRevealItems = document.querySelectorAll(
+      'main section:not(.hero) .section-label, '
+      + 'main section:not(.hero) h2, '
+      + '.calc-header > p, '
+      + '.cta-banner-inner > *, '
+      + '.contacts-inner'
+    );
+    var premiumRevealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        premiumRevealObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    premiumRevealItems.forEach(function (item, index) {
+      item.classList.add('premium-reveal');
+      item.style.setProperty('--reveal-delay', Math.min(index % 3, 2) * 60 + 'ms');
+      premiumRevealObserver.observe(item);
+    });
+  }
 })();
