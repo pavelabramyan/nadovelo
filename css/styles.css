@@ -2540,6 +2540,7 @@ body.premium-site {
   max-width: 10.5ch;
   margin: 0 0 1.5rem;
   padding-block: 0.04em 0.12em;
+  padding-inline-end: 0.15em;
   color: #f7fff9;
   font-size: clamp(3.5rem, 6.2vw, 6.7rem);
   line-height: 1.05;
@@ -2550,14 +2551,8 @@ body.premium-site {
 
 .premium-site .hero-content h1 span {
   color: var(--lime-bright);
-  background: linear-gradient(100deg, var(--lime-bright), #62e3bd 70%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* иначе градиент-текст обрезает низ «з» / хвосты «р» */
-  padding-bottom: 0.08em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  -webkit-text-fill-color: currentColor;
+  background: none;
 }
 
 .premium-site .hero-content > .hero-lead {
@@ -3041,7 +3036,7 @@ body.premium-site {
 
 @media (max-width: 1023px) {
   .premium-site .hero--banner .hero-content h1 {
-    max-width: 13ch;
+    max-width: 14ch;
   }
 }
 
@@ -3793,12 +3788,14 @@ body.premium-site {
     letter-spacing: 0.1em;
   }
 
-  .premium-site .hero-content h1 {
-    max-width: 12ch;
+  .premium-site .hero-content h1,
+  .premium-site .hero--banner .hero-content h1 {
+    max-width: none;
     margin-bottom: 1.15rem;
+    padding-inline-end: 0.2em;
     font-size: clamp(2.7rem, 13vw, 4.3rem);
-    line-height: 1.06;
-    letter-spacing: -0.035em;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
   }
 
   .premium-site .hero-content > .hero-lead {
