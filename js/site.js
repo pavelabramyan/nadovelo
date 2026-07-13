@@ -299,87 +299,93 @@
     observer.observe(el);
   });
 
-  document.querySelectorAll('.gallery-grid').forEach(function (grid) {
-    grid.classList.add('gallery-grid--hover-scroll');
-    var animId = null;
-    var velocity = 0;
-    var dragging = false;
-    var dragStartX = 0;
-    var dragStartScroll = 0;
+  document.querySelectorAll('[data-gallery]').forEach(function (root) {
+    var mainImg = root.querySelector('[data-gallery-main]');
+    var captionEl = root.querySelector('[data-gallery-caption]');
+    var counterEl = root.querySelector('[data-gallery-counter]');
+    var thumbs = Array.prototype.slice.call(root.querySelectorAll('.gallery-thumb'));
+    var prevBtn = root.querySelector('[data-gallery-prev]');
+    var nextBtn = root.querySelector('[data-gallery-next]');
+    var stage = root.querySelector('.gallery-stage');
+    if (!mainImg || !thumbs.length) return;
 
-    function tick() {
-      if (dragging) {
-        animId = null;
-        return;
-      }
-      if (!velocity) {
-        animId = null;
-        return;
-      }
-      var maxScroll = grid.scrollWidth - grid.clientWidth;
-      if (maxScroll <= 0) {
-        velocity = 0;
-        animId = null;
-        return;
-      }
-      grid.scrollLeft = Math.max(0, Math.min(maxScroll, grid.scrollLeft + velocity));
-      if ((velocity > 0 && grid.scrollLeft >= maxScroll) || (velocity < 0 && grid.scrollLeft <= 0)) {
-        velocity = 0;
-      }
-      animId = requestAnimationFrame(tick);
+    var index = Math.max(0, thumbs.findIndex(function (t) { return t.classList.contains('is-active'); }));
+    if (index < 0) index = 0;
+    var touchX = null;
+
+    function scrollThumbIntoView(thumb) {
+      if (!thumb || !thumb.scrollIntoView) return;
+      thumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     }
 
-    grid.addEventListener('mousemove', function (e) {
-      if (dragging) return;
-      var rect = grid.getBoundingClientRect();
-      var x = e.clientX - rect.left;
-      var center = rect.width / 2;
-      var dead = rect.width * 0.1;
-      var dist = x - center;
-      if (Math.abs(dist) < dead) {
-        velocity = 0;
-        return;
-      }
-      var maxSpeed = 9;
-      velocity = (dist / (center - dead)) * maxSpeed;
-      velocity = Math.max(-maxSpeed, Math.min(maxSpeed, velocity));
-      if (!animId) animId = requestAnimationFrame(tick);
+    function setIndex(next, focusThumb) {
+      var total = thumbs.length;
+      index = ((next % total) + total) % total;
+      var active = thumbs[index];
+      thumbs.forEach(function (thumb, i) {
+        var on = i === index;
+        thumb.classList.toggle('is-active', on);
+        thumb.setAttribute('aria-selected', on ? 'true' : 'false');
+        thumb.tabIndex = on ? 0 : -1;
+      });
+
+      var src = active.getAttribute('data-src');
+      var fallback = active.getAttribute('data-fallback');
+      var alt = active.getAttribute('data-alt') || '';
+      var caption = active.getAttribute('data-caption') || '';
+
+      mainImg.classList.add('is-switching');
+      window.setTimeout(function () {
+        mainImg.onerror = function () {
+          if (fallback && mainImg.src.indexOf(fallback) === -1) mainImg.src = fallback;
+        };
+        mainImg.src = src;
+        mainImg.alt = alt;
+        if (captionEl) captionEl.textContent = caption;
+        if (counterEl) counterEl.textContent = (index + 1) + ' / ' + total;
+        mainImg.classList.remove('is-switching');
+      }, 120);
+
+      scrollThumbIntoView(active);
+      if (focusThumb) active.focus({ preventScroll: true });
+    }
+
+    thumbs.forEach(function (thumb, i) {
+      thumb.addEventListener('click', function () { setIndex(i); });
+      thumb.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          setIndex(index + 1, true);
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          setIndex(index - 1, true);
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          setIndex(0, true);
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          setIndex(thumbs.length - 1, true);
+        }
+      });
     });
 
-    grid.addEventListener('mouseleave', function () {
-      if (!dragging) velocity = 0;
-    });
+    if (prevBtn) prevBtn.addEventListener('click', function () { setIndex(index - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { setIndex(index + 1); });
 
-    grid.addEventListener('mousedown', function (e) {
-      if (e.button !== 0) return;
-      dragging = true;
-      velocity = 0;
-      dragStartX = e.pageX;
-      dragStartScroll = grid.scrollLeft;
-      grid.classList.add('is-dragging');
-    });
+    if (stage) {
+      stage.addEventListener('touchstart', function (e) {
+        touchX = e.changedTouches[0].clientX;
+      }, { passive: true });
+      stage.addEventListener('touchend', function (e) {
+        if (touchX == null) return;
+        var dx = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(dx) < 40) return;
+        setIndex(dx < 0 ? index + 1 : index - 1);
+      }, { passive: true });
+    }
 
-    window.addEventListener('mousemove', function (e) {
-      if (!dragging) return;
-      grid.scrollLeft = dragStartScroll - (e.pageX - dragStartX);
-    });
-
-    window.addEventListener('mouseup', function () {
-      if (!dragging) return;
-      dragging = false;
-      grid.classList.remove('is-dragging');
-    });
-
-    grid.addEventListener('wheel', function (e) {
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      var maxScroll = grid.scrollWidth - grid.clientWidth;
-      if (maxScroll <= 1) return;
-      var atStart = grid.scrollLeft <= 0;
-      var atEnd = grid.scrollLeft >= maxScroll - 1;
-      if ((e.deltaY > 0 && atEnd) || (e.deltaY < 0 && atStart)) return;
-      e.preventDefault();
-      grid.scrollLeft += e.deltaY;
-    }, { passive: false });
+    setIndex(index);
   });
 
   var premiumHero = document.querySelector('[data-three-hero]');

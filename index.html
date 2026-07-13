@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=28">
+  <link rel="stylesheet" href="css/styles.css?v=31">
 </head>
 <body class="premium-site">
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -250,31 +250,95 @@
           </div>
         </div>
 
-        <div class="gallery gallery--tariffs">
-          <p class="section-label">Галерея</p>
-          <h2>Наши велосипеды</h2>
-          <div class="gallery-grid">
-            <figure class="gallery-item"><img src="images/photo-01.webp" alt="Электровелосипед для курьерской доставки" loading="lazy" onerror="this.onerror=null;this.src='images/photo-01.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-02.webp" alt="Парк электровелосипедов НадоВело" loading="lazy" onerror="this.onerror=null;this.src='images/photo-02.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-03.webp" alt="Модель со стандартной батареей" loading="lazy" onerror="this.onerror=null;this.src='images/photo-03.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-04.webp" alt="Электровелосипед для длинной смены" loading="lazy" onerror="this.onerror=null;this.src='images/photo-04.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-05.webp" alt="Готов к выдаче курьеру" loading="lazy" onerror="this.onerror=null;this.src='images/photo-05.jpg'"><figcaption>Выдача</figcaption></figure>
-            <figure class="gallery-item"><img src="images/photo-06.webp" alt="Про-модель с двумя АКБ" loading="lazy" onerror="this.onerror=null;this.src='images/photo-06.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-07.webp" alt="Техника для доставки еды" loading="lazy" onerror="this.onerror=null;this.src='images/photo-07.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-08.webp" alt="Надёжный транспорт для заработка" loading="lazy" onerror="this.onerror=null;this.src='images/photo-08.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-09.webp" alt="Электровелосипед в Саратове" loading="lazy" onerror="this.onerror=null;this.src='images/photo-09.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-10.webp" alt="Сервис и выдача на месте" loading="lazy" onerror="this.onerror=null;this.src='images/photo-10.jpg'"><figcaption>Сервис</figcaption></figure>
-            <figure class="gallery-item"><img src="images/photo-11.webp" alt="Офис проката НадоВело" loading="lazy" onerror="this.onerror=null;this.src='images/photo-11.jpg'"><figcaption>Офис</figcaption></figure>
-            <figure class="gallery-item"><img src="images/photo-12.webp" alt="Выбор модели под смену" loading="lazy" onerror="this.onerror=null;this.src='images/photo-12.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-13.webp" alt="Парк для курьерских смен" loading="lazy" onerror="this.onerror=null;this.src='images/photo-13.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-15.webp" alt="Электровелосипеды в наличии" loading="lazy" onerror="this.onerror=null;this.src='images/photo-15.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-16.webp" alt="Удобная посадка для курьера" loading="lazy" onerror="this.onerror=null;this.src='images/photo-16.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-17.webp" alt="Современная электротехника" loading="lazy" onerror="this.onerror=null;this.src='images/photo-17.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-18.webp" alt="НадоВело — прокат в Саратове" loading="lazy" onerror="this.onerror=null;this.src='images/photo-18.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-19.webp" alt="Летний велосипед Super Kano" loading="lazy" onerror="this.onerror=null;this.src='images/photo-19.jpg'"><figcaption>Лето</figcaption></figure>
-            <figure class="gallery-item"><img src="images/photo-20.webp" alt="Складной велосипед в сложенном виде" loading="lazy" onerror="this.onerror=null;this.src='images/photo-20.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-21.webp" alt="Складной велосипед Super Kano" loading="lazy" onerror="this.onerror=null;this.src='images/photo-21.jpg'"></figure>
-            <figure class="gallery-item"><img src="images/photo-22.webp" alt="Велосипед для летнего тарифа" loading="lazy" onerror="this.onerror=null;this.src='images/photo-22.jpg'"><figcaption>От 350 ₽/час</figcaption></figure>
+        <div class="gallery gallery--showcase" id="gallery" data-gallery>
+          <div class="gallery-head">
+            <div>
+              <p class="section-label">Галерея</p>
+              <h2>Наши велосипеды</h2>
+            </div>
+            <p class="gallery-hint">Выберите фото или листайте стрелками</p>
+          </div>
+          <div class="gallery-showcase">
+            <div class="gallery-stage">
+              <button type="button" class="gallery-nav gallery-nav--prev" aria-label="Предыдущее фото" data-gallery-prev>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <figure class="gallery-main">
+                <img src="images/photo-01.webp" alt="Электровелосипед для курьерской доставки" width="1200" height="800" decoding="async" data-gallery-main onerror="this.onerror=null;this.src='images/photo-01.jpg'">
+                <figcaption class="gallery-main-meta">
+                  <span data-gallery-caption>Электро · доставка</span>
+                  <span class="gallery-counter" data-gallery-counter>1 / 21</span>
+                </figcaption>
+              </figure>
+              <button type="button" class="gallery-nav gallery-nav--next" aria-label="Следующее фото" data-gallery-next>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+            <div class="gallery-thumbs" role="tablist" aria-label="Миниатюры галереи" data-gallery-thumbs>
+              <button type="button" class="gallery-thumb is-active" role="tab" aria-selected="true" tabindex="0" data-index="0" data-src="images/photo-01.webp" data-fallback="images/photo-01.jpg" data-alt="Электровелосипед для курьерской доставки" data-caption="Электро · доставка" aria-label="Электро · доставка">
+                <img src="images/photo-01.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-01.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="1" data-src="images/photo-02.webp" data-fallback="images/photo-02.jpg" data-alt="Парк электровелосипедов НадоВело" data-caption="Парк" aria-label="Парк">
+                <img src="images/photo-02.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-02.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="2" data-src="images/photo-03.webp" data-fallback="images/photo-03.jpg" data-alt="Модель со стандартной батареей" data-caption="1 АКБ" aria-label="1 АКБ">
+                <img src="images/photo-03.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-03.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="3" data-src="images/photo-04.webp" data-fallback="images/photo-04.jpg" data-alt="Электровелосипед для длинной смены" data-caption="Длинная смена" aria-label="Длинная смена">
+                <img src="images/photo-04.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-04.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="4" data-src="images/photo-05.webp" data-fallback="images/photo-05.jpg" data-alt="Готов к выдаче курьеру" data-caption="Выдача" aria-label="Выдача">
+                <img src="images/photo-05.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-05.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="5" data-src="images/photo-06.webp" data-fallback="images/photo-06.jpg" data-alt="Про-модель с двумя АКБ" data-caption="2 АКБ" aria-label="2 АКБ">
+                <img src="images/photo-06.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-06.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="6" data-src="images/photo-07.webp" data-fallback="images/photo-07.jpg" data-alt="Техника для доставки еды" data-caption="Доставка" aria-label="Доставка">
+                <img src="images/photo-07.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-07.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="7" data-src="images/photo-08.webp" data-fallback="images/photo-08.jpg" data-alt="Надёжный транспорт для заработка" data-caption="В работе" aria-label="В работе">
+                <img src="images/photo-08.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-08.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="8" data-src="images/photo-09.webp" data-fallback="images/photo-09.jpg" data-alt="Электровелосипед в Саратове" data-caption="Саратов" aria-label="Саратов">
+                <img src="images/photo-09.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-09.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="9" data-src="images/photo-10.webp" data-fallback="images/photo-10.jpg" data-alt="Сервис и выдача на месте" data-caption="Сервис" aria-label="Сервис">
+                <img src="images/photo-10.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-10.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="10" data-src="images/photo-11.webp" data-fallback="images/photo-11.jpg" data-alt="Офис проката НадоВело" data-caption="Офис" aria-label="Офис">
+                <img src="images/photo-11.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-11.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="11" data-src="images/photo-12.webp" data-fallback="images/photo-12.jpg" data-alt="Выбор модели под смену" data-caption="Выбор модели" aria-label="Выбор модели">
+                <img src="images/photo-12.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-12.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="12" data-src="images/photo-13.webp" data-fallback="images/photo-13.jpg" data-alt="Парк для курьерских смен" data-caption="Парк смен" aria-label="Парк смен">
+                <img src="images/photo-13.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-13.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="13" data-src="images/photo-15.webp" data-fallback="images/photo-15.jpg" data-alt="Электровелосипеды в наличии" data-caption="В наличии" aria-label="В наличии">
+                <img src="images/photo-15.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-15.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="14" data-src="images/photo-16.webp" data-fallback="images/photo-16.jpg" data-alt="Удобная посадка для курьера" data-caption="Посадка" aria-label="Посадка">
+                <img src="images/photo-16.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-16.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="15" data-src="images/photo-17.webp" data-fallback="images/photo-17.jpg" data-alt="Современная электротехника" data-caption="Техника" aria-label="Техника">
+                <img src="images/photo-17.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-17.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="16" data-src="images/photo-18.webp" data-fallback="images/photo-18.jpg" data-alt="НадоВело — прокат в Саратове" data-caption="НадоВело" aria-label="НадоВело">
+                <img src="images/photo-18.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-18.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="17" data-src="images/photo-19.webp" data-fallback="images/photo-19.jpg" data-alt="Летний велосипед Super Kano" data-caption="Лето" aria-label="Лето">
+                <img src="images/photo-19.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-19.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="18" data-src="images/photo-20.webp" data-fallback="images/photo-20.jpg" data-alt="Складной велосипед в сложенном виде" data-caption="Складной" aria-label="Складной">
+                <img src="images/photo-20.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-20.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="19" data-src="images/photo-21.webp" data-fallback="images/photo-21.jpg" data-alt="Складной велосипед Super Kano" data-caption="Super Kano" aria-label="Super Kano">
+                <img src="images/photo-21.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-21.jpg'">
+              </button>
+              <button type="button" class="gallery-thumb" role="tab" aria-selected="false" tabindex="-1" data-index="20" data-src="images/photo-22.webp" data-fallback="images/photo-22.jpg" data-alt="Велосипед для летнего тарифа" data-caption="от 350 ₽/час" aria-label="от 350 ₽/час">
+                <img src="images/photo-22.webp" alt="" loading="lazy" width="120" height="90" onerror="this.onerror=null;this.src='images/photo-22.jpg'">
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -522,8 +586,8 @@
     <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="floating-cta floating-cta--telegram" data-track="telegram_float">Telegram</a>
   </div>
 
-  <script type="module" src="js/three-scene.js?v=28"></script>
-  <script src="js/site.js?v=28"></script>
-  <script src="js/calculators.js?v=28"></script>
+  <script type="module" src="js/three-scene.js?v=31"></script>
+  <script src="js/site.js?v=31"></script>
+  <script src="js/calculators.js?v=31"></script>
 </body>
 </html>
