@@ -2961,8 +2961,83 @@ body.premium-site {
 }
 
 .premium-site .start-requirements-card:nth-child(1)::before { content: '01 / ДОКУМЕНТ'; }
-.premium-site .start-requirements-card:nth-child(2)::before { content: '02 / ЗАЛОГ'; }
+.premium-site .start-requirements-card:nth-child(2)::before { content: '02 / УСЛОВИЯ'; }
 .premium-site .start-requirements-card:nth-child(3)::before { content: '03 / ВЫДАЧА'; }
+
+/* Banner hero — full-bleed photo, no product card */
+.premium-site .hero--banner {
+  display: flex;
+  align-items: center;
+}
+
+.premium-site .hero--banner .hero-photo-bg {
+  z-index: 0;
+  background-size: cover;
+  background-position: center 45%;
+  transform: scale(1.02);
+}
+
+.premium-site .hero--banner .hero-photo-wash {
+  z-index: 1;
+  background:
+    linear-gradient(105deg, rgba(7, 19, 15, 0.92) 0%, rgba(7, 19, 15, 0.72) 42%, rgba(7, 19, 15, 0.42) 100%),
+    linear-gradient(0deg, rgba(7, 19, 15, 0.55) 0%, transparent 42%);
+}
+
+.premium-site .hero--banner .hero-bg,
+.premium-site .hero--banner .hero-grid-overlay,
+.premium-site .hero--banner .hero-noise {
+  z-index: 2;
+}
+
+.premium-site .hero-inner--banner {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 760px;
+  margin: 0;
+  width: 100%;
+}
+
+.premium-site .hero--banner .hero-content {
+  max-width: 720px;
+}
+
+.premium-site .hero--banner .hero-content h1 {
+  max-width: 12ch;
+}
+
+.premium-site .tariff-badge--summer {
+  background: linear-gradient(125deg, #fbbf24, #f59e0b);
+  color: #1f1300;
+}
+
+.premium-site .tariffs-grid--4 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .premium-site .tariffs-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .premium-site .tariffs-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .premium-site .tariffs-grid--4 .tariff-card {
+    min-height: 480px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .premium-site .hero--banner .hero-content h1 {
+    max-width: 13ch;
+  }
+}
 
 .premium-site .start-requirements-card h3 {
   font-size: clamp(1.2rem, 2vw, 1.55rem);

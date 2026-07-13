@@ -7,7 +7,7 @@
   <meta name="description" content="Аренда электровелосипедов для курьеров в Саратове от 3 500 ₽/неделя. Выкуп в рассрочку. Оформление за 15 минут.">
   <link rel="icon" type="image/jpeg" href="images/logo.jpg">
   <meta property="og:title" content="НадоВело — Прокат электровелосипедов для курьеров">
-  <meta property="og:description" content="Аренда от 3 500 ₽/неделя. Выкуп в рассрочку. Первый день бесплатно.">
+  <meta property="og:description" content="Аренда от 3 500 ₽/неделя. Выкуп в рассрочку. Приведи друга — получи бонус.">
   <meta property="og:image" content="https://pavelabramyan.github.io/nadovelo/images/photo-01.webp">
   <meta property="og:url" content="https://pavelabramyan.github.io/nadovelo/">
   <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=27">
+  <link rel="stylesheet" href="css/styles.css?v=28">
 </head>
 <body class="premium-site">
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -84,20 +84,21 @@
   </header>
 
   <main>
-    <section class="hero hero--premium" id="top" data-three-hero>
+    <section class="hero hero--premium hero--banner" id="top" data-three-hero>
+      <div class="hero-photo-bg" aria-hidden="true" style="background-image:url('images/photo-01.webp')"></div>
       <div class="hero-photo-wash" aria-hidden="true"></div>
       <div class="hero-bg hero-bg--fallback" aria-hidden="true">
         <canvas id="three-canvas"></canvas>
       </div>
       <div class="hero-grid-overlay" aria-hidden="true"></div>
       <div class="hero-noise" aria-hidden="true"></div>
-      <div class="hero-inner hero-inner--premium">
+      <div class="hero-inner hero-inner--banner">
         <div class="hero-content">
           <p class="hero-kicker"><span class="hero-live-dot" aria-hidden="true"></span> Электровелосипеды для работы · Саратов</p>
           <h1>Электровело для курьеров. <span>Смена без простоя.</span></h1>
           <p class="hero-lead">Аренда и выкуп от 3 500 ₽/неделя. Выдача за 15 минут, свой сервис и техника, готовая к длинной смене.</p>
           <div class="hero-offer-row">
-            <span class="hero-badge">Первый день — бесплатно</span>
+            <span class="hero-badge">Приведи друга — получи бонус</span>
             <span class="hero-availability"><span aria-hidden="true"></span> Велосипеды в наличии</span>
           </div>
           <div class="hero-buttons">
@@ -113,28 +114,6 @@
             </a>
             <a href="tel:+79093408841" data-track="phone_hero_link">+7 (909) 340-88-41</a>
           </div>
-        </div>
-        <div class="hero-visual" data-hero-visual>
-          <figure class="hero-product-card">
-            <div class="hero-product-image">
-              <img src="images/photo-01.webp" alt="Электровелосипед НадоВело для курьерской смены" width="960" height="1280" fetchpriority="high" decoding="async">
-              <div class="hero-product-shade" aria-hidden="true"></div>
-            </div>
-            <figcaption>
-              <span>Monster CROSS / PRO</span>
-              <small>готовы к выдаче сегодня</small>
-            </figcaption>
-          </figure>
-          <div class="hero-float-card hero-float-card--range">
-            <span class="hero-float-icon" aria-hidden="true">↗</span>
-            <div><strong>до 12 часов</strong><small>работы от заряда</small></div>
-          </div>
-          <div class="hero-float-card hero-float-card--service">
-            <span class="hero-float-icon" aria-hidden="true">24</span>
-            <div><strong>Свой сервис</strong><small>без долгого простоя</small></div>
-          </div>
-          <div class="hero-route-pin hero-route-pin--one" aria-hidden="true"><span></span></div>
-          <div class="hero-route-pin hero-route-pin--two" aria-hidden="true"><span></span></div>
         </div>
       </div>
       <a class="hero-scroll-cue" href="#start" aria-label="Перейти к условиям старта">
@@ -155,8 +134,8 @@
             <div class="stat-label">В неделю</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num stat-text">Бесплатно</div>
-            <div class="stat-label">Первый день</div>
+            <div class="stat-num stat-text">Бонус</div>
+            <div class="stat-label">Приведи друга</div>
           </div>
           <div class="stat-item">
             <div class="stat-num">9–18</div>
@@ -174,7 +153,8 @@
             <h3>Паспорт РФ</h3>
           </div>
           <div class="start-requirements-card">
-            <h3>Залог от 3 000 ₽</h3>
+            <h3>Без залога</h3>
+            <p>желательно Саратовская прописка</p>
           </div>
           <div class="start-requirements-card">
             <h3>Пн–пт 9:00–18:00</h3>
@@ -188,16 +168,16 @@
       <div class="container">
         <p class="section-label">Тарифы</p>
         <h2>Выберите удобный тариф</h2>
-        <div class="tariffs-grid stagger-reveal">
+        <div class="tariffs-grid tariffs-grid--4 stagger-reveal">
           <div class="tariff-card">
             <div class="tariff-price">3 500 ₽</div>
             <div class="tariff-period">в неделю · 1 АКБ</div>
             <p class="tariff-day">~500 ₽/сутки</p>
             <ul class="tariff-features">
-              <li>1 АКБ 28.6 Ah</li>
+              <li>1 АКБ 60V / 21 Ah</li>
               <li>до 8–10 часов работы</li>
               <li>Бесплатное ТО каждые 500 км</li>
-              <li>Залог от 3 000 ₽</li>
+              <li>Без залога</li>
             </ul>
             <a href="#calculators" class="btn btn-primary btn-block">Рассчитать</a>
           </div>
@@ -207,12 +187,25 @@
             <div class="tariff-period">в неделю · 2 АКБ</div>
             <p class="tariff-day">~600 ₽/сутки</p>
             <ul class="tariff-features">
-              <li>2 АКБ по 21 Ah</li>
+              <li>2 АКБ 60V / 21 Ah</li>
               <li>до 10–12 часов работы</li>
               <li>Бесплатное ТО и замена АКБ</li>
-              <li>Залог от 3 000 ₽</li>
+              <li>Без залога</li>
             </ul>
             <a href="#calculators" class="btn btn-primary btn-block">Рассчитать</a>
+          </div>
+          <div class="tariff-card">
+            <span class="tariff-badge tariff-badge--summer">Лето</span>
+            <div class="tariff-price">от 350 ₽</div>
+            <div class="tariff-period">в час · летний тариф</div>
+            <p class="tariff-day">велосипед без электропривода</p>
+            <ul class="tariff-features">
+              <li>Обычный велосипед</li>
+              <li>Почасовая аренда</li>
+              <li>Идеально на сезон</li>
+              <li>Без залога</li>
+            </ul>
+            <a href="#form" class="btn btn-primary btn-block">Оставить заявку</a>
           </div>
           <div class="tariff-card">
             <div class="tariff-price">от 17 000 ₽</div>
@@ -274,6 +267,10 @@
             <figure class="gallery-item"><img src="images/photo-16.webp" alt="Удобная посадка для курьера" loading="lazy" onerror="this.onerror=null;this.src='images/photo-16.jpg'"></figure>
             <figure class="gallery-item"><img src="images/photo-17.webp" alt="Современная электротехника" loading="lazy" onerror="this.onerror=null;this.src='images/photo-17.jpg'"></figure>
             <figure class="gallery-item"><img src="images/photo-18.webp" alt="НадоВело — прокат в Саратове" loading="lazy" onerror="this.onerror=null;this.src='images/photo-18.jpg'"></figure>
+            <figure class="gallery-item"><img src="images/photo-19.webp" alt="Летний велосипед Super Kano" loading="lazy" onerror="this.onerror=null;this.src='images/photo-19.jpg'"><figcaption>Лето</figcaption></figure>
+            <figure class="gallery-item"><img src="images/photo-20.webp" alt="Складной велосипед в сложенном виде" loading="lazy" onerror="this.onerror=null;this.src='images/photo-20.jpg'"></figure>
+            <figure class="gallery-item"><img src="images/photo-21.webp" alt="Складной велосипед Super Kano" loading="lazy" onerror="this.onerror=null;this.src='images/photo-21.jpg'"></figure>
+            <figure class="gallery-item"><img src="images/photo-22.webp" alt="Велосипед для летнего тарифа" loading="lazy" onerror="this.onerror=null;this.src='images/photo-22.jpg'"><figcaption>От 350 ₽/час</figcaption></figure>
           </div>
         </div>
       </div>
@@ -300,8 +297,8 @@
               <div class="calc-field">
                 <label for="rent-model">Тариф</label>
                 <select id="rent-model">
-                  <option value="standard">1 АКБ — 3 500 ₽/неделя</option>
-                  <option value="pro">2 АКБ — 4 200 ₽/неделя</option>
+                  <option value="standard">1 АКБ 60V / 21 Ah — 3 500 ₽/неделя</option>
+                  <option value="pro">2 АКБ 60V / 21 Ah — 4 200 ₽/неделя</option>
                 </select>
               </div>
               <div class="calc-field">
@@ -316,19 +313,11 @@
             <div class="calc-result">
               <h3>Итого за период</h3>
               <div class="calc-big-number" id="rent-total">3 500 ₽</div>
-              <div class="calc-big-label">стоимость аренды без залога</div>
+              <div class="calc-big-label">стоимость аренды</div>
               <div class="calc-breakdown">
                 <div class="calc-row"><span class="label">В неделю</span><span class="val" id="rent-per-week">3 500 ₽</span></div>
                 <div class="calc-row"><span class="label">В сутки</span><span class="val" id="rent-per-day">500 ₽</span></div>
-                <div class="calc-row"><span class="label">Первый платёж</span><span class="val" id="rent-first-pay">6 500 ₽</span></div>
-                <div class="calc-row"><span class="label">Залог (возвратный)</span><span class="val" id="rent-deposit-val">3 000 ₽</span></div>
-              </div>
-              <div class="calc-chart">
-                <div class="calc-chart-bar" id="rent-breakdown-bar"></div>
-                <div class="calc-chart-legend">
-                  <span class="l-rent">Аренда</span>
-                  <span class="l-deposit">Залог</span>
-                </div>
+                <div class="calc-row"><span class="label">Первый платёж</span><span class="val" id="rent-first-pay">3 500 ₽</span></div>
               </div>
               <p class="calc-note" id="rent-earnings"></p>
               <div class="calc-tip" id="rent-tip"></div>
@@ -405,10 +394,10 @@
     <section class="cta-banner">
       <div class="container cta-banner-inner">
         <div>
-          <p class="cta-banner-label">Первый день — бесплатно</p>
+          <p class="cta-banner-label">Приведи друга — получи бонус</p>
           <h2>Оставьте заявку — перезвоним за 15 минут</h2>
         </div>
-        <a href="#form" class="btn btn-primary btn-lg">Получить бесплатный день</a>
+        <a href="#form" class="btn btn-primary btn-lg">Оставить заявку</a>
       </div>
     </section>
 
@@ -419,7 +408,7 @@
         <div class="faq-list">
           <div class="faq-item">
             <button type="button" class="faq-question" aria-expanded="false">Какие документы нужны?</button>
-            <div class="faq-answer" hidden><div class="faq-answer-inner">Паспорт РФ. Для курьеров — подтверждение работы в службе доставки не обязательно, но может ускорить оформление.</div></div>
+            <div class="faq-answer" hidden><div class="faq-answer-inner">Паспорт РФ. Для курьеров — подтверждение работы в службе доставки не обязательно, но может ускорить оформление. Желательно Саратовская прописка.</div></div>
           </div>
           <div class="faq-item">
             <button type="button" class="faq-question" aria-expanded="false">Можно ли выкупить?</button>
@@ -459,7 +448,7 @@
           </div>
           <div class="form-block" id="form">
             <h3>Оставить заявку</h3>
-            <p class="form-offer">Первый день аренды — бесплатно для новых клиентов</p>
+            <p class="form-offer">Приведи друга — получи бонус. Без залога.</p>
             <div class="contacts-social contacts-social--form">
               <a href="https://vk.com/nadovelosaratov" target="_blank" rel="noopener" class="social-icon social-icon--vk" aria-label="ВКонтакте" data-track="vk_form">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.513 10.832 3.68 8.457 3.68 8.017c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .373.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.154-3.574 2.154-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.271.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg>
@@ -529,8 +518,8 @@
     <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="floating-cta floating-cta--telegram" data-track="telegram_float">Telegram</a>
   </div>
 
-  <script type="module" src="js/three-scene.js?v=27"></script>
-  <script src="js/site.js?v=27"></script>
-  <script src="js/calculators.js?v=27"></script>
+  <script type="module" src="js/three-scene.js?v=28"></script>
+  <script src="js/site.js?v=28"></script>
+  <script src="js/calculators.js?v=28"></script>
 </body>
 </html>

@@ -5,8 +5,8 @@
   const fmtShort = (n) => Math.round(n).toLocaleString('ru-RU');
 
   const MODELS = {
-    standard: { name: '1 АКБ', weekly: 3500, batteries: 1, deposit: 3000, hours: '8–10' },
-    pro: { name: '2 АКБ', weekly: 4200, batteries: 2, deposit: 3000, hours: '10–12' }
+    standard: { name: '1 АКБ 60V / 21 Ah', weekly: 3500, batteries: 1, hours: '8–10' },
+    pro: { name: '2 АКБ 60V / 21 Ah', weekly: 4200, batteries: 2, hours: '10–12' }
   };
 
   const BUYOUT_MODELS = {
@@ -73,8 +73,6 @@
     perDay: document.getElementById('rent-per-day'),
     perWeek: document.getElementById('rent-per-week'),
     firstPay: document.getElementById('rent-first-pay'),
-    deposit: document.getElementById('rent-deposit-val'),
-    breakdown: document.getElementById('rent-breakdown-bar'),
     tip: document.getElementById('rent-tip'),
     earnings: document.getElementById('rent-earnings'),
     orders: document.getElementById('rent-orders'),
@@ -104,8 +102,7 @@
     const weekly = model.weekly;
     const daily = weekly / 7;
     const rentTotal = weekly * weeks;
-    const deposit = model.deposit;
-    const firstPayment = weekly + deposit;
+    const firstPayment = weekly;
 
     rentEls.periodDisplay.textContent = weeksLabel(weeks);
     rentEls.period.setAttribute('aria-valuetext', weeksLabel(weeks));
@@ -113,14 +110,6 @@
     rentEls.perWeek.textContent = fmt(weekly);
     rentEls.perDay.textContent = fmt(daily);
     rentEls.firstPay.textContent = fmt(firstPayment);
-    rentEls.deposit.textContent = fmt(deposit);
-
-    const totalWithDeposit = rentTotal + deposit;
-    const rentPct = (rentTotal / totalWithDeposit) * 100;
-    const depPct = 100 - rentPct;
-    rentEls.breakdown.innerHTML =
-      '<div class="calc-chart-segment rent" style="width:' + rentPct + '%"></div>' +
-      '<div class="calc-chart-segment deposit" style="width:' + depPct + '%"></div>';
 
     const ordersPerDay = parseInt(rentEls.orders.value, 10);
     const avgOrderPay = 180;
@@ -140,7 +129,7 @@
 
     rentEls.tip.textContent =
       model.name + ': до ' + model.hours + ' ч работы. Недельный тариф ' + fmt(weekly) +
-      ' (~' + fmt(daily) + '/сутки). Первый день бесплатно для новых клиентов.';
+      ' (~' + fmt(daily) + '/сутки). Без залога. Приведи друга — получи бонус.';
 
     syncFormFromRent();
   }
