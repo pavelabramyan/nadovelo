@@ -525,7 +525,11 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.417 15.181l-.397 5.584c.568 0 .814-.244 1.106-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931L23.93 3.821c.321-1.431-.541-2-1.531-1.565L1.315 9.866c-1.453.597-1.435 1.453-.262 1.842l5.094 1.587 11.832-7.453c.558-.339 1.069-.151.649.218"/></svg>
               </a>
             </div>
-            <form id="lead-form" method="post" novalidate>
+            <form id="lead-form" method="post" action="send-lead.php" novalidate>
+              <div class="form-group" hidden>
+                <label for="website">Сайт</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+              </div>
               <div class="form-group">
                 <label for="name">Имя</label>
                 <input type="text" id="name" name="name" autocomplete="name" placeholder="Ваше имя" required>
@@ -547,8 +551,8 @@
               <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
             </form>
             <div id="form-success" class="form-success" hidden>
-              <h4>Заявка готова к отправке</h4>
-              <p>Откроется Telegram с текстом заявки — нажмите «Отправить» в мессенджере. Мы ответим в течение 15 минут.</p>
+              <h4>Заявка отправлена</h4>
+              <p>Письмо ушло на info@nadovelo.ru. Мы ответим в течение 15 минут.</p>
               <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="btn btn-telegram">Написать в Telegram</a>
             </div>
           </div>
@@ -586,8 +590,8 @@
     <a href="https://t.me/nadovelo" target="_blank" rel="noopener" class="floating-cta floating-cta--telegram" data-track="telegram_float">Telegram</a>
   </div>
 
-  <script type="module" src="js/three-scene.js?v=37"></script>
-  <script src="js/site.js?v=37"></script>
-  <script src="js/calculators.js?v=37"></script>
+  <script type="module" src="js/three-scene.js?v=38"></script>
+  <script src="js/site.js?v=38"></script>
+  <script src="js/calculators.js?v=38"></script>
 </body>
 </html>

@@ -197,23 +197,54 @@
       var name = form.name.value.trim();
       var phone = form.phone.value.trim();
       var comment = (form.comment && form.comment.value || '').trim();
+      var website = (form.website && form.website.value || '').trim();
       var phoneIsValid = phone.replace(/\D/g, '').length === 11;
+      var submitBtn = form.querySelector('button[type="submit"]');
       form.phone.setCustomValidity(phoneIsValid ? '' : 'Введите телефон полностью');
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
 
-      trackGoal('lead_submit');
-      var message = buildLeadMessage({ name: name, phone: phone, comment: comment });
-      var tgUrl = SITE.telegram + '?text=' + encodeURIComponent(message);
-      window.open(tgUrl, '_blank', 'noopener');
-
-      var success = document.getElementById('form-success');
-      if (success) {
-        success.hidden = false;
-        form.hidden = true;
+      if (submitBtn) {
+        submitBtn.disabled = true;
       }
+
+      fetch('send-lead.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          phone: phone,
+          comment: comment,
+          website: website
+        })
+      })
+        .then(function (res) {
+          return res.json().then(function (data) {
+            return { ok: res.ok && data && data.ok, data: data };
+          });
+        })
+        .then(function (result) {
+          if (!result.ok) {
+            throw new Error('mail');
+          }
+          trackGoal('lead_submit');
+          var success = document.getElementById('form-success');
+          if (success) {
+            success.hidden = false;
+            form.hidden = true;
+          }
+        })
+        .catch(function () {
+          form.reportValidity();
+          window.alert('Заявка не ушла на почту. Позвоните +7 (909) 340-88-41 или напишите в Telegram.');
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+          }
+        });
     });
   }
 
